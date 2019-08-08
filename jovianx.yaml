@@ -1,14 +1,14 @@
-# JovainX API Compatability
+# JovainX API Compatibility
 # v1
 jovianx_api_version: v1
 
 # Name of this SaaS application
 # string
-application_name: InsighEdge
+application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.81
+version: 0.0.1
 
 main_endpoint_component: insightedge
 
@@ -16,10 +16,8 @@ components:
   - name: insightedge
     version: 1.0.0
     provider: helm_chart 
-    helm_chart_name: insightedge-chart
+    helm_chart_name: insightedge
     helm_set:
-      - key: replicas
-        value: 1
       - key: vendor_company
         value: '{{ static://vendor_company }}'
       - key: end_company
@@ -34,160 +32,22 @@ components:
         value: '{{ static://api_host }}'
     endpoints:
       - name: 'User application'
-        service_name: node
-        port: 80
-        path: /app
+        service_name: insightedge-zeppelin
+        port: 9090
+        path: /
         type: entry_point
 
 settings_descriptors:
-  - name: industry
-    display: "Your industry"
-    input_type: select
-    default: us-east1
-    description_title: 'Your industry.'
-    description_explanations: 'Your industry'
-    select_options:
-      - name: finance
-        display: 'Finance'
-        components:
-          - name: insightedge
-            params:
-              - key: industry
-                value: finance
-      - name: adtech
-        display: 'Adtech'
-        components:
-          - name: insightedge
-            params:
-              - key: industry
-                value: adtech
-
-  - name: cloudProvider
-    display: 'Cloud Provider'
-    input_type: radio
-    default: gcp
-    description_title: 'Choose your provider'
-    select_options:
-      - name: gcp
-        display: 'Google Cloud Platform'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/gcp.png'
-        components:
-          - name: insightedge
-            params:
-              - key: cloudProvider
-                value: gcp
-      - name: aws
-        display: 'Amazon Web Services'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/aws.png'
-        components:
-          - name: insightedge
-            params:
-              - key: cloudProvider
-                value: aws
-      - name: azure
-        display: 'Microsoft azure'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
-        components:
-          - name: insightedge
-            params:
-              - key: cloudProvider
-                value: azure
-
-  - name: gcp_region
-    display: "Choose Google Cloud region"
-    input_type: select
-    default: us-east1
-    description_title: 'Choose your Google Cloud region.'
-    description_explanations: 'Basic support is included for all customers and covers availability of the Atlas service, connectivity issues, and questions about the UI or platform features.'
-    dependency:
-      name: cloudProvider
-      values:
-        - gcp
-    select_options:
-      - name: us-east1
-        display: 'us-east1 - Moncks Corner, South Carolina, USA'
-        components:
-          - name: insightedge
-            params:
-              - key: aws_region
-                value: us-east1
-      - name: us-west1
-        display: 'us-west1 - The Dalles, Oregon, USA'
-        components:
-          - name: insightedge
-            params:
-              - key: aws_region
-                value: us-west1
-
-  - name: workload_type
-    display: "Workload Type"
-    input_type: radio
-    default: 
-    select_options:
-      - name: general
-        display: 'General Purpose'
-        components:
-          - name: insightedge
-            params:
-              - key: workload_type
-                value: general
-      - name: compute
-        display: 'Compute Optimized'
-        components:
-          - name: insightedge
-            params:
-              - key: workload_type
-                value: compute
-      - name: memory
-        display: 'Memory Optimized'
-        components:
-          - name: insightedge
-            params:
-              - key: workload_type
-                value: memory
-  
-  - name: storage_performance
-    display: "Storage Performance"
-    input_type: radio
-    default: 
-    select_options:
-      - name: extreme
-        display: 'Extreme Performance (Persistent Memory)'
-        components:
-          - name: insightedge
-            params:
-              - key: storage_performance
-                value: extreme
-      - name: NVMe_SSD
-        display: 'Cost/Performance (NVMe SSD)'
-        components:
-          - name: insightedge
-            params:
-              - key: storage_performance
-                value: NVMe_SSD
-      - name: ssd
-        display: 'Cost Optimized (SSD)'
-        components:
-          - name: insightedge
-            params:
-              - key: storage_performance
-                value: ssd
-
-  - name: storage_size
-    display: 'Storage Size'
-    input_type: range
-    units: TB
-    min_value: 1
-    max_value: 10
-    step: 0.5
-    default: 1
+  - name: moto
+    display: 'Company motto'
+    input_type: string
+    default: 'Write Once Scale Anywhere'
     components:
-      - name: insightedge
+      - name: node-component
         params:
-          - key: storage_size
-  
+          - key: moto
   - name: ha
-    display: 'Enable High Avalibility Cluster'
+    display: 'High availability for InsightEdge Manager'
     input_type: checkbox
     default: false
     select_options:
@@ -195,17 +55,46 @@ settings_descriptors:
         components:
           - name: insightedge
             params:
-              - key: ha
+              - key: manager.ha #we used "short-names" (not insightedge-manager) because _helpers.tpl has ".Values.nameOverride"
                 value: true
       - name: false
         components:
           - name: insightedge
             params:
-              - key: ha
+              - key: manager.ha
                 value: false
-
-
-
-# Cluster Size: 
-
-
+  - name: memoryxtend
+    display: 'MemoryXtend'
+    input_type: checkbox
+    default: false
+    description_title: 'MemoryXtend'
+    description_explanations: 'The MemoryXtend storage model allows an external storage medium to store the Space data'
+    select_options:
+      - name: true
+        components:
+          - name: insightedge
+            params:
+              - key: pu.memoryXtendVolume.enabled
+                value: true
+      - name: false
+        components:
+          - name: insightedge
+            params:
+              - key: pu.memoryXtendVolume.enabled
+                value: false
+  - name: memoryxtend-storage
+    display: 'MemoryXtend storage size'
+    dependency:
+      name: memoryxtend
+      values:
+        - true
+    input_type: range
+    units: GB
+    min_value: 1
+    max_value: 2000
+    step: 1
+    default: 500
+    components:
+      - name: insightedge
+        params:
+          - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
