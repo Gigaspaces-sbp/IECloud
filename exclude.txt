@@ -1,6 +1,0 @@
-*.md
-*.gz
-.git
-*old*
-exclude.txt
-.new
