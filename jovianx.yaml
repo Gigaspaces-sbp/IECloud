@@ -57,21 +57,21 @@ settings_descriptors:
         display: 'General-purpose'
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: workload
                 value: general
       - name: compute
         display: 'Compute-optimized'
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: workload
                 value: compute
       - name: memory
         display: 'Memory-optimized'
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: workload
                 value: memory
   - name: ha
@@ -82,13 +82,13 @@ settings_descriptors:
       - name: true
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: manager.ha #we used "short-names" (not insightedge-manager) because _helpers.tpl has ".Values.nameOverride"
                 value: true
       - name: false
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: manager.ha
                 value: false
   - name: memoryxtend
@@ -101,13 +101,13 @@ settings_descriptors:
       - name: true
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: pu.memoryXtendVolume.enabled
                 value: true
       - name: false
         components:
           - name: insightedge
-            params:
+            helm_set:
               - key: pu.memoryXtendVolume.enabled
                 value: false
   - name: memoryxtend-storage
@@ -124,7 +124,7 @@ settings_descriptors:
     default: 500
     components:
       - name: insightedge
-        params:
+        helm_set:
           - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
   - name: moto
     display: 'Company motto'
@@ -132,5 +132,5 @@ settings_descriptors:
     default: 'Write Once Scale Anywhere'
     components:
       - name: insightedge
-        params:
+        helm_set:
           - key: moto
