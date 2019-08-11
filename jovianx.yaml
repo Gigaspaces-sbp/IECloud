@@ -1,3 +1,13 @@
+#
+# Memory Intensive - n1-highmem-8 (?)
+# 32GB / 4 Core
+# General Purpose - n1-standard-8
+# 32GB / 8 Core
+# CPU Intensive - n1-highcpu-16 (n1-highcpu-32)
+# 32GB / 16 Cores
+
+
+
 # JovainX API Compatibility
 # v1
 jovianx_api_version: v1
@@ -38,14 +48,32 @@ components:
         type: entry_point
 
 settings_descriptors:
-  - name: moto
-    display: 'Company motto'
-    input_type: string
-    default: 'Write Once Scale Anywhere'
-    components:
-      - name: node-component
-        params:
-          - key: moto
+  - name: workload_type
+    display: "Workload type"
+    input_type: select
+    default: general
+    select_options:
+      - name: general
+        display: 'General-purpose'
+        components:
+          - name: insightedge
+            params:
+              - key: workload
+                value: general
+      - name: compute
+        display: 'Compute-optimized'
+        components:
+          - name: insightedge
+            params:
+              - key: workload
+                value: compute
+      - name: memory
+        display: 'Memory-optimized'
+        components:
+          - name: insightedge
+            params:
+              - key: workload
+                value: memory
   - name: ha
     display: 'High availability for InsightEdge Manager'
     input_type: checkbox
@@ -98,3 +126,11 @@ settings_descriptors:
       - name: insightedge
         params:
           - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
+  - name: moto
+    display: 'Company motto'
+    input_type: string
+    default: 'Write Once Scale Anywhere'
+    components:
+      - name: insightedge
+        params:
+          - key: moto
