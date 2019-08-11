@@ -3,4 +3,4 @@
 .git
 *old*
 exclude.txt
-
+.new
