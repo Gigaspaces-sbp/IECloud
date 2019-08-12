@@ -47,6 +47,141 @@ components:
         type: entry_point
 
 settings_descriptors:
+  - name: industry
+    display: 'Choose you industry'
+    input_type: select
+    default: Finance
+    select_options:
+      - name: finance
+        display: 'Finance'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: industry
+                value: finance
+      - name: healthcare
+        display: 'Healthcare'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: industry
+                value: healthcare
+      - name: miscellaneous
+        display: 'Miscellaneous'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: industry
+                value: miscellaneous
+      - name: technology
+        display: 'Technology'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: industry
+                value: technology
+      
+  - name: cloudProvider
+    display: 'Cloud Provider'
+    input_type: radio
+    default: gcp
+    description_title: 'Choose your provider'
+    select_options:
+      - name: azure
+        display: 'Microsoft azure'
+        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: cloudProvider
+                value: azure
+          - name: insightedge
+            helm_set:
+              - key: enable
+                value: azure
+      - name: aws
+        display: 'Amazon Web Services'
+        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/aws.png'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: cloudProvider
+                value: aws
+          - name: insightedge
+            helm_set:
+              - key: enable
+                value: aws
+      - name: gcp
+        display: 'Google Cloud Platform'
+        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/gcp.png'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: cloudProvider
+                value: gcp
+          - name: insightedge
+            helm_set:
+              - key: enable
+                value: gcp
+  - name: workload_type
+    display: "Workload type"
+    input_type: select
+    default: general
+    select_options:
+      - name: general
+        display: 'General-purpose'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: general
+      - name: compute
+        display: 'Compute-optimized'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: compute
+      - name: memory
+        display: 'Memory-optimized'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: memory
+  - name: storage_performance
+    display: "Storage performance"
+    input_type: select
+    default: general
+    select_options:
+      - name: general
+        display: 'Standard persistent disks'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: general
+      - name: ssd-persistent
+        display: 'SSD persistent disks'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: ssd-persistent
+      - name: ssd-scsi
+        display: 'Local SSD (SCSI)'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: ssd-scsi
+      - name: ssd-nvme
+        display: 'Local SSD (NVMe)'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: workload
+                value: ssd-nvme
   - name: ha
     display: 'High availability for InsightEdge Manager'
     input_type: checkbox
@@ -99,11 +234,3 @@ settings_descriptors:
       - name: insightedge
         helm_set:
           - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
-  - name: moto
-    display: 'Company motto'
-    input_type: string
-    default: 'Write Once Scale Anywhere'
-    components:
-      - name: insightedge
-        helm_set:
-          - key: moto
