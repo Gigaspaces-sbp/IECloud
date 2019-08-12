@@ -20,6 +20,9 @@ application_name: InsightEdge
 version: 0.0.1
 
 main_endpoint_component: insightedge
+application_launch_timeout:
+  tries_count: 120
+  seconds_between_tries: 5
 
 components:
   - name: insightedge
@@ -88,7 +91,7 @@ settings_descriptors:
     description_title: 'Choose your provider'
     select_options:
       - name: azure
-        display: 'Microsoft azure'
+        display: 'Microsoft Azure'
         img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
         components:
           - name: insightedge
