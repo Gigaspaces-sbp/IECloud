@@ -92,7 +92,7 @@ settings_descriptors:
     select_options:
       - name: azure
         display: 'Microsoft Azure'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
+        img: 'https://srv-file6.gofile.io/download/rGJvrU/azure.png'
         components:
           - name: insightedge
             helm_set:
@@ -104,7 +104,7 @@ settings_descriptors:
                 value: azure
       - name: aws
         display: 'Amazon Web Services'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/aws.png'
+        img: 'https://srv-file6.gofile.io/download/rGJvrU/aws.png'
         components:
           - name: insightedge
             helm_set:
@@ -116,7 +116,7 @@ settings_descriptors:
                 value: aws
       - name: gcp
         display: 'Google Cloud Platform'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/gcp.png'
+        img: 'https://srv-file6.gofile.io/download/rGJvrU/gcp.png'
         components:
           - name: insightedge
             helm_set:
