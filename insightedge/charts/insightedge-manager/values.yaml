@@ -26,7 +26,7 @@ service:
     # api: REST Manager API port.
     api:
       port: 8090
-      nodePort: 30890
+      #nodePort: 30890
 # hs: Define the Platform Manager headless service configuration.
 hs:
   ports:

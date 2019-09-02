@@ -14,4 +14,4 @@ service:
   type: LoadBalancer
   port:
     internal: 9090
-    api: 30990
+    #api: 30990

@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.1
+version: 0.0.4
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -31,17 +31,17 @@ components:
     helm_chart_name: insightedge
     helm_set:
       - key: vendor_company
-        value: '{{ static://vendor_company }}'
+        value: '{{ account://vendor_company }}'
       - key: end_company
-        value: '{{ static://end_company }}'
+        value: '{{ account://end_company }}'
       - key: account_api_key
-        value: '{{ static://account_api_key }}'
+        value: '{{ account://account_api_key }}'
       - key: admin_email
-        value: '{{ static://admin_email }}'
+        value: '{{ account://admin_email }}'
       - key: admin_password
-        value: '{{ static://admin_password }}'
+        value: '{{ account://admin_password }}'
       - key: api_host
-        value: '{{ static://api_host }}'
+        value: '{{ account://api_host }}'
     endpoints:
       - name: 'User application'
         service_name: insightedge-zeppelin
@@ -50,40 +50,6 @@ components:
         type: entry_point
 
 settings_descriptors:
-  - name: industry
-    display: 'Choose you industry'
-    input_type: select
-    default: Finance
-    select_options:
-      - name: finance
-        display: 'Finance'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: industry
-                value: finance
-      - name: healthcare
-        display: 'Healthcare'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: industry
-                value: healthcare
-      - name: miscellaneous
-        display: 'Miscellaneous'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: industry
-                value: miscellaneous
-      - name: technology
-        display: 'Technology'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: industry
-                value: technology
-      
   - name: cloudProvider
     display: 'Cloud Provider'
     input_type: radio
@@ -92,7 +58,7 @@ settings_descriptors:
     select_options:
       - name: azure
         display: 'Microsoft Azure'
-        img: 'https://srv-file6.gofile.io/download/rGJvrU/azure.png'
+        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
         components:
           - name: insightedge
             helm_set:
@@ -104,7 +70,7 @@ settings_descriptors:
                 value: azure
       - name: aws
         display: 'Amazon Web Services'
-        img: 'https://srv-file6.gofile.io/download/rGJvrU/aws.png'
+        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/aws.png'
         components:
           - name: insightedge
             helm_set:
@@ -116,7 +82,7 @@ settings_descriptors:
                 value: aws
       - name: gcp
         display: 'Google Cloud Platform'
-        img: 'https://srv-file6.gofile.io/download/rGJvrU/gcp.png'
+        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/gcp.png'
         components:
           - name: insightedge
             helm_set:
