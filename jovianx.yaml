@@ -31,14 +31,14 @@ components:
     helm_chart_name: feeder
     helm_set:
       - key: kafka.url
-        value: "{{ account://vendor_company }}--{{account://end_company}}--kafka-headless:9092"
+        value: "{{ account://components/kafka/helm_release_name }}-kafka-headless:9092"
   - name: kafka
     version: 1.0.0
     provider: helm_chart
     helm_chart_name: kafka
     helm_set:
       - key: zookeeper.url
-        value: "{{ account://vendor_company }}--{{account://end_company}}--insightedge-insightedge-manager-hs"
+        value: "{{ account://components/insightedge/helm_release_name }}-insightedge-manager-hs"
   - name: insightedge
     version: 1.0.0
     provider: helm_chart 
@@ -60,7 +60,7 @@ components:
         value: '{{ account://api_host }}'
     endpoints:
       - name: 'Getting Started app'
-        service_name: "{{ account://vendor_company }}--{{account://end_company}}--insightedge-insightedge-zeppelin-service"
+        service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service"
         port: 9090
         path: /#/notebook/2EQ7XUSYW
         type: entry_point
@@ -228,5 +228,5 @@ hooks:
       image: 'yoramw/add-zeppelin-note'
       command: ['/opt/scripts/run.sh']
       args:
-        - "{{ account://vendor_company }}--{{account://end_company}}--insightedge-insightedge-zeppelin-service:9090"
+        - "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service:9090"
 
