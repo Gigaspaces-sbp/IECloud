@@ -85,7 +85,7 @@ spec:
           args:
             - "component=pu"
             - "verbose=true"
-            - "name={{ $root.Release.Name }}"
+            - "name={{ $root.Values.spaceName }}"
             {{- if ($root.Values.license) }}
             - "license={{ $root.Values.license}}"
             {{- end }}

@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.4
+version: 0.0.8
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -25,11 +25,27 @@ application_launch_timeout:
   seconds_between_tries: 5
 
 components:
+  - name: feeder
+    version: 1.0.0
+    provider: helm_chart
+    helm_chart_name: feeder
+    helm_set:
+      - key: kafka.url
+        value: "{{ account://vendor_company }}--{{account://end_company}}--kafka-headless:9092"
+  - name: kafka
+    version: 1.0.0
+    provider: helm_chart
+    helm_chart_name: kafka
+    helm_set:
+      - key: zookeeper.url
+        value: "{{ account://vendor_company }}--{{account://end_company}}--insightedge-insightedge-manager-hs"
   - name: insightedge
     version: 1.0.0
     provider: helm_chart 
     helm_chart_name: insightedge
     helm_set:
+      - key: pu.partitions
+        value: 6
       - key: vendor_company
         value: '{{ account://vendor_company }}'
       - key: end_company
@@ -43,11 +59,12 @@ components:
       - key: api_host
         value: '{{ account://api_host }}'
     endpoints:
-      - name: 'User application'
-        service_name: insightedge-zeppelin
+      - name: 'Getting Started app'
+        service_name: "{{ account://vendor_company }}--{{account://end_company}}--insightedge-insightedge-zeppelin-service"
         port: 9090
-        path: /
+        path: /#/notebook/2EQ7XUSYW
         type: entry_point
+        dns: '{{ account://end_company }}.cloud.gigaspaces.com'
 
 settings_descriptors:
   - name: cloudProvider
@@ -203,3 +220,13 @@ settings_descriptors:
       - name: insightedge
         helm_set:
           - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
+
+hooks:
+  post_install:
+    - name: post-install-add-zeppelin-note
+      provider: docker
+      image: 'yoramw/add-zeppelin-note'
+      command: ['/opt/scripts/run.sh']
+      args:
+        - "{{ account://vendor_company }}--{{account://end_company}}--insightedge-insightedge-zeppelin-service:9090"
+

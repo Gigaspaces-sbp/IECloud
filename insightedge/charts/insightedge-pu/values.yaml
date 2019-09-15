@@ -14,6 +14,8 @@ license: tryme
 
 # resource: Define the URL of Processing Unit JAR file.
 resourceUrl:
+# resourceUrl: "https://insightedge-gettingstarted.s3.amazonaws.com/my-pu-0.1.jar" 
+
 # properties: Used to override the pu.xml properties that are defined as placeholders, receives string such as: memoryThreshold=7g (see documentation)
 properties:
 
@@ -23,10 +25,12 @@ properties:
 schema:
 
 # partitions: Define the number of partitions in the cluster.
-partitions:
+partitions: 
 # HA: Define whether the cluster should be highly available.
 # Set the anti-affinity value to enabled=true to ensure pod distribution across different nodes.
 ha: false
+
+spaceName: demo
 
 # Define the pod anti-affinity
 antiAffinity:
