@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.8
+version: 0.0.9
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -44,8 +44,8 @@ components:
     provider: helm_chart 
     helm_chart_name: insightedge
     helm_set:
-      - key: pu.partitions
-        value: 6
+      - key: pu.resources.limits.memory
+        value: 4092Mi
       - key: vendor_company
         value: '{{ account://vendor_company }}'
       - key: end_company

@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: gigaspaces/insightedge-enterprise
+  repository: yoramw/insightedge-enterprise
   tag: "14.5"
   pullPolicy: IfNotPresent #Always
 
