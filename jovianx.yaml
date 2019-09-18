@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.9
+version: 0.0.10
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -109,6 +109,45 @@ settings_descriptors:
             helm_set:
               - key: enable
                 value: gcp
+
+  - name: gcp_region
+    display: "GCP Region"
+    dependency:
+      name: cloudProvider
+      values:
+        - gcp
+    input_type: select
+    default: OREGON
+    select_options:
+      - name: OREGON
+        display: 'OREGON(us-west1)'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: gcp_region
+                value: us-west1
+      - name: LOS_ANGELES
+        display: 'LOS ANGELES(us-west2)'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: gcp_region
+                value: us-west2
+      - name: IOWA
+        display: 'IOWA(us-central1)'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: gcp_region
+                value: us-central1
+      - name: SOUTH_CAROLINA
+        display: 'SOUTH CAROLINA(us-east1)'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: gcp_region
+                value: us-east1
+
   - name: workload_type
     display: "Workload type"
     input_type: select
@@ -135,8 +174,79 @@ settings_descriptors:
             helm_set:
               - key: workload
                 value: memory
+
+
+  - name: ram
+    display: "Memory Allocation"
+    input_type: select
+    default: 8gb
+    select_options:
+      - name: 8gb
+        display: '8GB'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: ram
+                value: 8gb
+      - name: 16gb
+        display: '16GB'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: ram
+                value: 16gb
+      - name: 32gb
+        display: '32GB'
+        components:
+          - name: insightedge
+            helm_set:
+              - key: ram
+                value: 32gb
+
+  - name: ha
+    display: 'High Availability'
+    input_type: checkbox
+    default: false
+    select_options:
+      - name: true
+        components:
+          - name: insightedge
+            helm_set:
+              - key: manager.ha #we used "short-names" (not insightedge-manager) because _helpers.tpl has ".Values.nameOverride"
+                value: true
+      - name: false
+        components:
+          - name: insightedge
+            helm_set:
+              - key: manager.ha
+                value: false
+
+  - name: memoryxtend
+    display: 'MemoryXtend'
+    input_type: checkbox
+    default: false
+    description_title: 'MemoryXtend'
+    description_explanations: 'The MemoryXtend storage model allows an external storage medium to store the Space data'
+    select_options:
+      - name: true
+        components:
+          - name: insightedge
+            helm_set:
+              - key: pu.memoryXtendVolume.enabled
+                value: true
+      - name: false
+        components:
+          - name: insightedge
+            helm_set:
+              - key: pu.memoryXtendVolume.enabled
+                value: false
+
   - name: storage_performance
     display: "Storage performance"
+    dependency:
+      name: memoryxtend
+      values:
+        - true    
     input_type: select
     default: general
     select_options:
@@ -168,42 +278,8 @@ settings_descriptors:
             helm_set:
               - key: workload
                 value: ssd-nvme
-  - name: ha
-    display: 'High availability for InsightEdge Manager'
-    input_type: checkbox
-    default: false
-    select_options:
-      - name: true
-        components:
-          - name: insightedge
-            helm_set:
-              - key: manager.ha #we used "short-names" (not insightedge-manager) because _helpers.tpl has ".Values.nameOverride"
-                value: true
-      - name: false
-        components:
-          - name: insightedge
-            helm_set:
-              - key: manager.ha
-                value: false
-  - name: memoryxtend
-    display: 'MemoryXtend'
-    input_type: checkbox
-    default: false
-    description_title: 'MemoryXtend'
-    description_explanations: 'The MemoryXtend storage model allows an external storage medium to store the Space data'
-    select_options:
-      - name: true
-        components:
-          - name: insightedge
-            helm_set:
-              - key: pu.memoryXtendVolume.enabled
-                value: true
-      - name: false
-        components:
-          - name: insightedge
-            helm_set:
-              - key: pu.memoryXtendVolume.enabled
-                value: false
+                
+
   - name: memoryxtend-storage
     display: 'MemoryXtend storage size'
     dependency:
