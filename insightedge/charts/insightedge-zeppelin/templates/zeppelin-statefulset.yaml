@@ -30,4 +30,6 @@ spec:
           env:
             - name: ZEPPELIN_PORT
               value: {{ .Values.service.port.internal | quote }}
+            - name: XAP_LOOKUP_LOCATORS
+              value: "{{.Release.Name}}-insightedge-manager-hs:4174"
 

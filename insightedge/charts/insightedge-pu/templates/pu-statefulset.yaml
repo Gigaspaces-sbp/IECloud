@@ -54,7 +54,9 @@ spec:
             - "verbose=true"
             - "name={{ $root.Release.Name }}"
             {{ if ($root.Values.license) }}- "license={{ $root.Values.license}}"{{- end }}
-            {{ if ($root.Values.manager.name) }}- "manager.name={{$root.Values.manager.name}}"{{- end }}
+            {{ if ($root.Values.manager.name) }}- "manager.name={{$root.Values.manager.name}}"
+            {{ else }}- "manager.name={{$root.Release.Name}}"
+            {{- end }}
             {{ if ($root.Values.manager.ports.api) }}- "manager.ports.api={{$root.Values.manager.ports.api}}"{{- end }}
             {{ if ($root.Values.manager.discoveryTimeoutSeconds) }}- "manager.discoveryTimeoutSeconds={{$root.Values.manager.discoveryTimeoutSeconds}}"{{- end }}
       terminationGracePeriodSeconds: {{ $root.Values.terminationGracePeriodSeconds }}
@@ -107,6 +109,7 @@ spec:
             {{- end }}
             {{- if ($root.Values.manager.name) }}
             - "manager.name={{$root.Values.manager.name}}"
+            {{ else }}- "manager.name={{$root.Release.Name}}"
             {{- end }}
             {{- if ($root.Values.manager.ports.api) }}
             - "manager.ports.api={{$root.Values.manager.ports.api}}"
