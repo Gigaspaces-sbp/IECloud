@@ -45,7 +45,7 @@ components:
     helm_chart_name: insightedge
     helm_set:
       - key: pu.resources.limits.memory
-        value: 4092Mi
+        value: 2048Mi
       - key: vendor_company
         value: '{{ account://vendor_company }}'
       - key: end_company
