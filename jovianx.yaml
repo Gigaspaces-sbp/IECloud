@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.10
+version: 0.0.11
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -62,7 +62,7 @@ components:
       - name: 'Getting Started app'
         service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service"
         port: 9090
-        path: /#/notebook/2EQ7XUSYW
+        path: /#/notebook/INSIGHTEDGE-GETTING-STARTED
         type: entry_point
         dns: '{{ account://end_company }}.cloud.gigaspaces.com'
 
@@ -296,13 +296,4 @@ settings_descriptors:
       - name: insightedge
         helm_set:
           - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
-
-hooks:
-  post_install:
-    - name: post-install-add-zeppelin-note
-      provider: docker
-      image: 'yoramw/add-zeppelin-note'
-      command: ['/opt/scripts/run.sh']
-      args:
-        - "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service:9090"
 
