@@ -9,6 +9,9 @@ image:
 
 nameOverride: insightedge-zeppelin
 
+kafka:
+  url: localhost:9092
+
 service:
   # type: Service type.
   type: LoadBalancer

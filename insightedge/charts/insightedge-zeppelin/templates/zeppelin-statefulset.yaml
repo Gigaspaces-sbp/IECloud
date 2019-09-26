@@ -32,4 +32,5 @@ spec:
               value: {{ .Values.service.port.internal | quote }}
             - name: XAP_LOOKUP_LOCATORS
               value: "{{.Release.Name}}-insightedge-manager-hs:4174"
-
+            - name KAFKA_URL
+              value: {{ .Values.kafka.url }}

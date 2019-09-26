@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.11
+version: 0.0.12
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -58,6 +58,11 @@ components:
         value: '{{ account://admin_password }}'
       - key: api_host
         value: '{{ account://api_host }}'
+      - key: kafka.url
+        value: "{{ account://components/kafka/helm_release_name }}-kafka-headless:9092"
+    endpoints:
+      - name: 'Getting Started app'
+        service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service"
     endpoints:
       - name: 'Getting Started app'
         service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service"
