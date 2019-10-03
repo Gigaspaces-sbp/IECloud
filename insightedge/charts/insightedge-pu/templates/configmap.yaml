@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "insightedge-pu.fullname" $ }}-configmap
+data:
+  metrics_xml: |
+    <?xml version="1.0" encoding="UTF-8"?>
+
+    <metrics-configuration>
+      <reporters>
+        <reporter name="influxdb">
+        <property name="host" value="{{ .Values.metrics.influxdb_ip }}"/>
+        <property name="database" value="mydb"/>
+        </reporter>
+      </reporters>
+
+     <grafana url="http://{{ .Values.metrics.grafana_ip }}:80" api-key="" user="admin" password="insightedge">
+       <datasources>
+        <datasource name="xap">
+          <property name="type" value="influxdb"/>
+          <property name="isDefault" value="true"/>
+          <property name="url" value="http://{{ .Values.metrics.influxdb_ip }}:8086"/>
+          <property name="database" value="mydb"/>
+          <property name="access" value="proxy"/>
+        </datasource>
+       </datasources>
+     </grafana>
+
+     <samplers>
+       <sampler name="default" sample-rate="5s" />
+       <sampler name="high" sample-rate="1s" report-rate="5s" />
+       <sampler name="low" sample-rate="1m" />
+       <sampler name="off" sample-rate="0" />
+     </samplers>
+
+     <metrics>
+     </metrics>
+    </metrics-configuration>
+
+
+

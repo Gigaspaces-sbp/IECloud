@@ -45,6 +45,13 @@ spec:
         partitionId: {{$partitionId | quote }}
     #pods spec
     spec:
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ template "insightedge-pu.fullname" $ }}-configmap
+            items:
+            - key: metrics_xml
+              path: metrics.xml
       initContainers:
         - name: check-manager-ready
           image: "{{ $root.Values.image.repository }}:{{ $root.Values.image.tag }}"
@@ -55,7 +62,7 @@ spec:
             - "name={{ $root.Release.Name }}"
             {{ if ($root.Values.license) }}- "license={{ $root.Values.license}}"{{- end }}
             {{ if ($root.Values.manager.name) }}- "manager.name={{$root.Values.manager.name}}"
-            {{ else }}- "manager.name={{$root.Release.Name}}"
+            {{ else }}- "manager.name={{ $root.Release.Name }}"
             {{- end }}
             {{ if ($root.Values.manager.ports.api) }}- "manager.ports.api={{$root.Values.manager.ports.api}}"{{- end }}
             {{ if ($root.Values.manager.discoveryTimeoutSeconds) }}- "manager.discoveryTimeoutSeconds={{$root.Values.manager.discoveryTimeoutSeconds}}"{{- end }}
@@ -130,8 +137,8 @@ spec:
             periodSeconds: {{$root.Values.livenessProbe.periodSeconds}}
             failureThreshold: {{$root.Values.livenessProbe.failureThreshold}}
           {{- end }}
-          {{- if ($root.Values.memoryXtendVolume.enabled) }}
           volumeMounts:
+          {{- if ($root.Values.memoryXtendVolume.enabled) }}
           {{- if (empty $root.Values.memoryXtendVolume.volumeMount.name) }}
           {{- fail "Volume mount name must be supplied!" }}
           {{- end}}
@@ -141,8 +148,10 @@ spec:
           {{- end }}
             mountPath: {{$root.Values.memoryXtendVolume.volumeMount.mountPath}}
           {{- end }}
-  {{- if ($root.Values.memoryXtendVolume.enabled) }}
+          - name: config-volume
+            mountPath: /opt/gigaspaces/config/metrics
   volumeClaimTemplates:
+  {{- if ($root.Values.memoryXtendVolume.enabled) }}
   - metadata:
       name: {{$root.Values.memoryXtendVolume.volumeMount.name}}
     spec:

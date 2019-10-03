@@ -95,3 +95,7 @@ manager:
   # discoveryTimeoutSeconds: Define the length of the timeout for checking if the Platform Manager is available.
   # If the timeout expires and the Platform Manager is still unavailable, the init pod will restart.
   discoveryTimeoutSeconds: 60
+
+metrics:
+  influxdb_ip: 127.0.0.1
+  grafana_ip: 127.0.0.1

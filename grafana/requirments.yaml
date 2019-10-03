@@ -1,0 +1,4 @@
+dependencies:
+  - name: influxdb
+    version: "1.2.0"
+    repository: file://../influxdb
