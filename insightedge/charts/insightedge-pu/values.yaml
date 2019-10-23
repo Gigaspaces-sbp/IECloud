@@ -5,17 +5,22 @@
 nameOverride: insightedge-pu
 image:
   repository: gigaspaces/insightedge-enterprise
-  tag: "14.5"
+  tag: "15.0.0-m16"
   pullPolicy: IfNotPresent #Always
 terminationGracePeriodSeconds: 30
 
-  # license: Define the GigaSpaces InsightEdge licence key.
+enableExternalClient: false
+
+service:
+  # type: Service type.
+  type: LoadBalancer
+  port: 8200
+
+# license: Define the GigaSpaces InsightEdge licence key.
 license: tryme
 
 # resource: Define the URL of Processing Unit JAR file.
 resourceUrl:
-# resourceUrl: "https://insightedge-gettingstarted.s3.amazonaws.com/my-pu-0.1.jar" 
-
 # properties: Used to override the pu.xml properties that are defined as placeholders, receives string such as: memoryThreshold=7g (see documentation)
 properties:
 
@@ -24,13 +29,12 @@ properties:
 # If the schema is not defined, the default value is based on the partitions property (see below).
 schema:
 
+spaceName: demo
 # partitions: Define the number of partitions in the cluster.
-partitions: 
+partitions:
 # HA: Define whether the cluster should be highly available.
 # Set the anti-affinity value to enabled=true to ensure pod distribution across different nodes.
-ha: false
-
-spaceName: demo
+ha:
 
 # Define the pod anti-affinity
 antiAffinity:
@@ -42,7 +46,7 @@ livenessProbe:
   # enabled: Define whether the liveness probe is enabled
   enabled: false
   # initialDelaySeconds: Number of seconds after the container has started before liveness probe is initiated
-  initialDelaySeconds: 10
+  initialDelaySeconds: 30
   # periodSeconds: How often (in seconds) to perform the probe
   periodSeconds: 5
   # failureThreshold: When the probe fails, how retries before restarting the Pod

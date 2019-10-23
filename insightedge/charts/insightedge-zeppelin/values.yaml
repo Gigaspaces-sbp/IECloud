@@ -4,7 +4,7 @@
 
 image:
   repository: yoramw/insightedge-enterprise
-  tag: "14.5"
+  tag: "15.0.0-m16"
   pullPolicy: Always
 
 nameOverride: insightedge-zeppelin
@@ -15,6 +15,8 @@ kafka:
 service:
   # type: Service type.
   type: LoadBalancer
-  port:
-    internal: 9090
-    #api: 30990
+  ports:
+    # api: REST Manager API port.
+    api:
+      port: 9090
+      nodePort:

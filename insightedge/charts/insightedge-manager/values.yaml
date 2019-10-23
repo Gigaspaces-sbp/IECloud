@@ -5,10 +5,11 @@
 nameOverride: insightedge-manager
 image:
   repository: gigaspaces/insightedge-enterprise
-  tag: "14.5"
+  tag: "15.0.0-m16"
   pullPolicy: IfNotPresent #Always
 terminationGracePeriodSeconds: 30
 
+enableExternalClient: false
 # HA: Define the number of Platform Manager instances (a.k.a replicas) that are deployed.
 # HA=true deploys 3 Management Pods, HA=false deploys 1 Management Pod.
 ha: false
@@ -26,7 +27,10 @@ service:
     # api: REST Manager API port.
     api:
       port: 8090
-      #nodePort: 30890
+      nodePort:
+    # lus: lookup service port
+    lus:
+      port: 30174
 # hs: Define the Platform Manager headless service configuration.
 hs:
   ports:

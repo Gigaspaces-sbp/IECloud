@@ -29,8 +29,11 @@ spec:
           # args: ["start"]
           env:
             - name: ZEPPELIN_PORT
-              value: {{ .Values.service.port.internal | quote }}
+              value: {{ .Values.service.ports.api.port | quote }}
             - name: XAP_LOOKUP_LOCATORS
               value: "{{.Release.Name}}-insightedge-manager-hs:4174"
+            - name: XAP_LOOKUP_GROUPS
+              value: "{{.Release.Name}}-group"
             - name: KAFKA_URL
               value: {{ .Values.kafka.url }}
+

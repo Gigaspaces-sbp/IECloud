@@ -1,4 +1,4 @@
-FROM gigaspaces/insightedge-enterprise:14.5
+FROM gigaspaces/insightedge-enterprise:15.0.0-m16
 
 COPY flightdelays20172018.csv /opt/gigaspaces/
 COPY weather2017_8.csv /opt/gigaspaces/

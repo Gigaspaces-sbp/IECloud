@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.17
+version: 0.0.23
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -25,13 +25,19 @@ application_launch_timeout:
   seconds_between_tries: 5
 
 components:
-  - name: feeder
+  - name: flightdelays
     version: 1.0.0
     provider: helm_chart
-    helm_chart_name: feeder
+    helm_chart_name: flightdelays
     helm_set:
-      - key: kafka.url
-        value: "{{ account://components/kafka/helm_release_name }}-kafka-headless:9092"
+      - key: feeder.kafka.url
+        value: "{{ account://components/flightdelays/helm_release_name }}-kafka-headless:9092"
+      - key: feeder.enabled
+        value: true
+      - key: kafka.enabled
+        value: true
+      - key: kafka.zookeeper.url
+        value: "{{ account://components/insightedge/helm_release_name }}-insightedge-manager-hs"
   - name: grafana
     version: 1.0.0
     provider: helm_chart
@@ -39,13 +45,10 @@ components:
     helm_set:
       - key: stam
         value: key
-  - name: kafka
-    version: 1.0.0
-    provider: helm_chart
-    helm_chart_name: kafka
-    helm_set:
-      - key: zookeeper.url
-        value: "{{ account://components/insightedge/helm_release_name }}-insightedge-manager-hs"
+#  - name: kafka
+#    version: 1.0.0
+#    provider: helm_chart
+#    helm_chart_name: kafka
   - name: insightedge
     version: 1.0.0
     provider: helm_chart 
@@ -53,20 +56,8 @@ components:
     helm_set:
       - key: pu.resources.limits.memory
         value: 2048Mi
-      - key: vendor_company
-        value: '{{ account://vendor_company }}'
-      - key: end_company
-        value: '{{ account://end_company }}'
-      - key: account_api_key
-        value: '{{ account://account_api_key }}'
-      - key: admin_email
-        value: '{{ account://admin_email }}'
-      - key: admin_password
-        value: '{{ account://admin_password }}'
-      - key: api_host
-        value: '{{ account://api_host }}'
       - key: zeppelin.kafka.url
-        value: "{{ account://components/kafka/helm_release_name }}-kafka-headless:9092"
+        value: "{{ account://components/flightdelays/helm_release_name }}-kafka-headless:9092"
       - key: pu.metrics.influxdb_ip
         value: "{{ account://components/grafana/helm_release_name }}-influxdb"
       - key: pu.metrics.grafana_ip
@@ -83,6 +74,11 @@ components:
         type: entry_point
         path: /
         service_name: "{{ account://components/grafana/helm_release_name }}-grafana"
+      - name: 'WebUI'
+        port: 8090
+        type: entry_point
+        path: /ui
+        service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-manager-service"
 
 settings_descriptors:
   - name: cloudProvider
@@ -314,4 +310,26 @@ settings_descriptors:
       - name: insightedge
         helm_set:
           - key: pu.memoryXtendVolume.volumeClaimTemplate.storage
-
+  - name: use_case
+    display: "Select pre-defined use-case"
+    input_type: select
+    default: none
+    select_options:
+      - name: none
+        display: 'None'
+        components:
+          - name: flightdelays
+            helm_set:
+            - key: feeder.enabled
+              value: false
+            - key: kafka.enabled
+              value: false
+      - name: flights_app
+        display: 'Flight Delays '
+        components:
+          - name: flightdelays
+            helm_set:
+            - key: feeder.enabled
+              value: true
+            - key: kafka.enabled
+              value: true

@@ -20,6 +20,56 @@
 {{$podSuffix := empty ($root.Values.partitions) | ternary "" $suffix }}
 {{$haCount:= (and (not (empty $root.Values.ha)) $root.Values.ha) | ternary 2 1 }}
 {{$replicaCount:= empty ($root.Values.instances) | ternary $haCount $root.Values.instances }}
+{{$externalClientEnabled:= $root.Values.enableExternalClient}}
+---
+{{if $externalClientEnabled}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "insightedge-pu.fullname" $ }}{{$podSuffix}}-0-service
+  labels:
+    app: {{ template "insightedge-pu.name" $ }}
+    chart: {{ template "insightedge-pu.chart" $ }}
+    release: {{ $root.Release.Name }}
+    heritage: {{ $root.Release.Service }}
+spec:
+  type: {{ $root.Values.service.type }}
+  selector:
+    statefulset.kubernetes.io/pod-name: {{ template "insightedge-pu.fullname" $ }}{{$podSuffix}}-0
+    app: {{ template "insightedge-pu.name" $ }}
+    selectorId: {{ template "insightedge-pu.fullname" $ }}{{$podSuffix}}
+    partitionId: {{$partitionId | quote }}
+  ports:
+    - name: data
+      protocol: TCP
+      port: {{$root.Values.service.port}}
+{{end}}
+---
+{{if $externalClientEnabled}}
+{{if $root.Values.ha}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "insightedge-pu.fullname" $ }}{{$podSuffix}}-1-service
+  labels:
+    app: {{ template "insightedge-pu.name" $ }}
+    chart: {{ template "insightedge-pu.chart" $ }}
+    release: {{ $root.Release.Name }}
+    heritage: {{ $root.Release.Service }}
+spec:
+  type: {{ $root.Values.service.type }}
+  selector:
+    statefulset.kubernetes.io/pod-name: {{ template "insightedge-pu.fullname" $ }}{{$podSuffix}}-1
+    app: {{ template "insightedge-pu.name" $ }}
+    selectorId: {{ template "insightedge-pu.fullname" $ }}{{$podSuffix}}
+    partitionId: {{$partitionId | quote }}
+  ports:
+    - name: data
+      protocol: TCP
+      port: {{$root.Values.service.port}}
+{{end}}
+{{end}}
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -66,6 +116,15 @@ spec:
             {{- end }}
             {{ if ($root.Values.manager.ports.api) }}- "manager.ports.api={{$root.Values.manager.ports.api}}"{{- end }}
             {{ if ($root.Values.manager.discoveryTimeoutSeconds) }}- "manager.discoveryTimeoutSeconds={{$root.Values.manager.discoveryTimeoutSeconds}}"{{- end }}
+        {{- if $externalClientEnabled}}
+        - name: check-external-service-ready
+          image: "{{ $root.Values.image.repository }}:{{ $root.Values.image.tag }}"
+          command: ["tools/kubernetes/entrypoint.sh"]
+          args:
+            - "component=init-pu-external-service"
+            - "verbose=true"
+            - "release.namespace={{ $root.Release.Namespace }}"
+        {{- end}}
       terminationGracePeriodSeconds: {{ $root.Values.terminationGracePeriodSeconds }}
       {{- with $root.Values.antiAffinity }}
       {{- if ($root.Values.antiAffinity.enabled) }}
@@ -90,11 +149,19 @@ spec:
           env:
           - name: EXT_JAVA_OPTIONS
             value: "{{$root.Values.java.options}}"
+          - name: XAP_LOOKUP_GROUPS
+            value: "{{$root.Release.Name}}-group"
           command: ["tools/kubernetes/entrypoint.sh"]
           args:
             - "component=pu"
             - "verbose=true"
             - "name={{ $root.Values.spaceName }}"
+            - "release.namespace={{ $root.Release.Namespace }}"
+            {{- if $externalClientEnabled}}
+            - "external.client.enabled=true"
+            - "lrmi.port={{ $root.Values.service.port }}"
+            - "lus.discoveryPort=30174"
+            {{- end}}
             {{- if ($root.Values.license) }}
             - "license={{ $root.Values.license}}"
             {{- end }}
@@ -150,8 +217,8 @@ spec:
           {{- end }}
           - name: config-volume
             mountPath: /opt/gigaspaces/config/metrics
-  volumeClaimTemplates:
   {{- if ($root.Values.memoryXtendVolume.enabled) }}
+  volumeClaimTemplates:
   - metadata:
       name: {{$root.Values.memoryXtendVolume.volumeMount.name}}
     spec:

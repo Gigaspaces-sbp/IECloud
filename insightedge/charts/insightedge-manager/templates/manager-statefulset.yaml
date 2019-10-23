@@ -24,6 +24,16 @@ spec:
         selectorId: {{ template "insightedge-manager.fullname" . }}
     spec:
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{if (.Values.enableExternalClient)}}
+      initContainers:
+        - name: check-external-service-ready
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["tools/kubernetes/entrypoint.sh"]
+          args:
+            - "component=init-manager-external-service"
+            - "verbose=true"
+            - "release.namespace={{ .Release.Namespace }}"
+      {{end}}
       containers:
         - name: gigaspaces-container
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -31,6 +41,8 @@ spec:
           env:
           - name: EXT_JAVA_OPTIONS
             value: "{{.Values.java.options}}"
+          - name: XAP_LOOKUP_GROUPS
+            value: "{{.Release.Name}}-group"
           command: ["tools/kubernetes/entrypoint.sh"]
           args:
             - "component=manager"
@@ -38,13 +50,18 @@ spec:
             - "java.heap={{ .Values.java.heap}}"
             - "managerReplicas={{$managerReplicas}}"
             - "release.namespace={{ .Release.Namespace }}"
+            {{if (.Values.enableExternalClient)}}
+            - "external.client.enabled=true"
+            - "lus.discoveryPort={{ .Values.service.ports.lus.port }}"
+            {{end}}
+            - "name={{ .Release.Name }}"
             - "full.name={{ template "insightedge-manager.fullname" . }}"
           livenessProbe:
             httpGet:
               path: /v2/info
               port: {{ .Values.service.ports.api.port}}
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 30
+            periodSeconds: 15
             failureThreshold: 3
           resources:
 {{ toYaml .Values.resources | indent 12 }}

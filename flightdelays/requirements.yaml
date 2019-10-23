@@ -1,0 +1,10 @@
+dependencies:
+  - name: feeder
+    version: "15.0.0-m16-tue-16"
+    alias: feeder
+    condition: feeder.enabled
+  - name: kafka
+    version: "15.0.0-m16-tue-16"
+    alias: kafka
+    condition: kafka.enabled
+

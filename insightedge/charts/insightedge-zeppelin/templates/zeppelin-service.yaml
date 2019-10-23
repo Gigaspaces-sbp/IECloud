@@ -12,8 +12,10 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - name: zeppelin
-      nodePort: {{ .Values.service.port.api }}
-      port: {{ .Values.service.port.internal }}
       protocol: TCP
+      port: {{ .Values.service.ports.api.port }}
+      {{if (.Values.service.ports.api.nodePort)}}
+      nodePort: {{ .Values.service.ports.api.nodePort }}
+      {{ end }}
   selector:
     selectorId: {{ template "insightedge-zeppelin.fullname" . }}

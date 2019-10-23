@@ -1,0 +1,30 @@
+{{if (.Values.enableExternalClient)}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Release.Name }}-gigaspaces-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  - serviceaccounts
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-gigaspaces-cluster-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - get
+  - list
+{{end}}

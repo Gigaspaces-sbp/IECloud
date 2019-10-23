@@ -17,5 +17,19 @@ spec:
       {{if (.Values.service.ports.api.nodePort)}}
       nodePort: {{ .Values.service.ports.api.nodePort }}
       {{ end }}
+    {{if (.Values.enableExternalClient) }}
+    - name: lus
+      protocol: TCP
+      port: {{ .Values.service.ports.lus.port }}
+      nodePort: {{ .Values.service.ports.lus.port }}
+    - name: lrmi1
+      protocol: TCP
+      port: 30820
+      nodePort: 30820
+    - name: lrmi2
+      protocol: TCP
+      port: 30821
+      nodePort: 30821
+    {{end}}
   selector:
     selectorId: {{ template "insightedge-manager.fullname" . }}

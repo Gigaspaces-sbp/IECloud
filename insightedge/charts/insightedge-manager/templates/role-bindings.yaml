@@ -1,0 +1,27 @@
+{{if (.Values.enableExternalClient) }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Release.Name }}-gigaspaces-rolebinding
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ .Release.Name }}-gigaspaces-role
+subjects:
+  - kind: Group
+    name: "system:serviceaccounts:{{ .Release.Namespace }}"
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-gigaspaces-cluster-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-gigaspaces-cluster-role
+subjects:
+  - kind: Group
+    name: "system:serviceaccounts"
+{{end}}
