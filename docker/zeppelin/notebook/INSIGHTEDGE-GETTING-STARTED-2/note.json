@@ -1,51 +1,9 @@
 ﻿{
   "paragraphs": [
     {
-      "text": "%md\n\n### Before running the paragraphs below;\n\nplease restart the spark interperter to reset its state by clicking the setting icon on the top right and choosing the restart icon on the left end of the spark interperter row. Don't forget to ok the operation",
-      "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:21:50+0000",
-      "config": {
-        "colWidth": 12,
-        "fontSize": 9,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionKey": "TAB",
-          "completionSupport": false
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "<div class=\"markdown-body\">\n<h3>Before running the paragraphs below;</h3>\n<p>please restart the spark interperter to reset its state by clicking the setting icon on the top right and choosing the restart icon on the left end of the spark interperter row. Don&rsquo;t forget to ok the operation</p>\n</div>"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1570717753268_851113747",
-      "id": "20191010-142913_1082565616",
-      "dateCreated": "2019-10-10T14:29:13+0000",
-      "dateStarted": "2019-10-23T12:21:51+0000",
-      "dateFinished": "2019-10-23T12:21:51+0000",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500,
-      "focus": true,
-      "$$hashKey": "object:3415"
-    },
-    {
       "text": "%md\n\n### Enriching the Flight Data\n\nAfter the data has been prepared, the next step is to fetch the daily weather data for the required time period and merge it with the flight delay data. (We have this data stored in a CSV file. If you don't have access to the data for some reason, you can download it from <https://insightedge-gettingstarted.s3.amazonaws.com/weather2017_8.csv.zip>.) \n\n**DistributedTasks** - To merge the weather data with the flight delay data we use the DistributedTasks capability, which lets us define code that executes in a distributed fashion over the in-memory data. This feature can also leverage the performance gains from the co-location of the logic/process and the data in the same Space.\n\nAfter the data is merged, we query it to verify that the new fields were added.\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:21:51+0000",
+      "dateUpdated": "2019-10-31T10:10:59+0000",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -78,17 +36,17 @@
       "jobName": "paragraph_1569132212523_-336217485",
       "id": "20190826-022957_1704419410",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:21:51+0000",
-      "dateFinished": "2019-10-23T12:21:51+0000",
+      "dateStarted": "2019-10-31T10:10:59+0000",
+      "dateFinished": "2019-10-31T10:10:59+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3416"
+      "$$hashKey": "object:6465"
     },
     {
       "title": "Restart interpreter before we use '%dep' & '%define'",
       "text": "%sh\nwget --method=PUT -O /dev/null http://localhost:9090/api/interpreter/setting/restart/spark\n\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:21:51+0000",
+      "dateUpdated": "2019-10-31T10:11:00+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -113,7 +71,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "--2019-10-23 12:21:51--  http://localhost:9090/api/interpreter/setting/restart/spark\nResolving localhost... 127.0.0.1, ::1\nConnecting to localhost|127.0.0.1|:9090... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 3924 (3.8K) [application/json]\nSaving to: '/dev/null'\n\n     0K ...                                                   100%  509M=0s\n\n2019-10-23 12:21:54 (509 MB/s) - '/dev/null' saved [3924/3924]\n\n"
+            "data": "--2019-10-31 10:11:00--  http://localhost:9090/api/interpreter/setting/restart/spark\nResolving localhost... 127.0.0.1, ::1\nConnecting to localhost|127.0.0.1|:9090... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 3924 (3.8K) [application/json]\nSaving to: '/dev/null'\n\n     0K ...                                                   100%  518M=0s\n\n2019-10-31 10:11:03 (518 MB/s) - '/dev/null' saved [3924/3924]\n\n"
           }
         ]
       },
@@ -121,16 +79,16 @@
       "jobName": "paragraph_1571819457458_-606767870",
       "id": "20191023-083057_1327164381",
       "dateCreated": "2019-10-23T08:30:57+0000",
-      "dateStarted": "2019-10-23T12:21:51+0000",
-      "dateFinished": "2019-10-23T12:21:54+0000",
+      "dateStarted": "2019-10-31T10:11:00+0000",
+      "dateFinished": "2019-10-31T10:11:03+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3417"
+      "$$hashKey": "object:6466"
     },
     {
       "text": "%dep\n\nz.load(\"org.apache.spark:spark-streaming-kafka-0-8_2.11:2.2.0\")\nz.load(\"com.google.code.gson:gson:2.8.5\")\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:21:54+0000",
+      "dateUpdated": "2019-10-31T10:11:03+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -142,7 +100,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -153,7 +112,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "res0: org.apache.zeppelin.dep.Dependency = org.apache.zeppelin.dep.Dependency@47c6f11c\n"
+            "data": "res0: org.apache.zeppelin.dep.Dependency = org.apache.zeppelin.dep.Dependency@7b4a5962\n"
           }
         ]
       },
@@ -161,16 +120,17 @@
       "jobName": "paragraph_1569409009077_145616743",
       "id": "20190925-105649_2122430845",
       "dateCreated": "2019-09-25T10:56:49+0000",
-      "dateStarted": "2019-10-23T12:21:54+0000",
-      "dateFinished": "2019-10-23T12:22:13+0000",
+      "dateStarted": "2019-10-31T10:11:03+0000",
+      "dateFinished": "2019-10-31T10:11:25+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3418"
+      "$$hashKey": "object:6467",
+      "title": "Load external libraries"
     },
     {
       "text": "%define\npackage model.v1\n\nimport com.gigaspaces.metadata._\nimport com.gigaspaces.metadata.index.SpaceIndexType;\nimport java.lang\nimport scala.beans.{BeanProperty}\nimport org.insightedge.scala.annotation._\nimport org.insightedge.spark.implicits.all._\n\n\n//Describe the data as Scala Case Class\n\ncase class FlightDelaysWithWeather(\n  @BeanProperty \n  @SpaceId\n  var id: String,\n  @BeanProperty \n  @SpaceIndex\n  var carrier: String,\n  @BeanProperty \n  @SpaceIndex\n  var flight_number: String,\n  @SpaceIndex\n  @BeanProperty \n  var year: Integer,\n  @BeanProperty \n  var month: String,\n  @BeanProperty \n  var dayofMonth: String,\n  @BeanProperty \n  var dayOfWeek: String,\n  @BeanProperty \n  var crsDepTime: String,\n  @SpaceIndex\n  @BeanProperty \n  var depDelay15: java.lang.Double,\n  @BeanProperty \n  var depDelay: java.lang.Double,\n  @SpaceIndex\n  @BeanProperty \n  var origin: String,\n  @BeanProperty \n  var dest: String,\n  @BeanProperty \n  var awnd: String,\n  @BeanProperty \n  var prcp: String,\n  @BeanProperty \n  var snow: String,\n  @BeanProperty \n  var tmax: String,\n  @BeanProperty \n  var tmin: String,\n  @BeanProperty \n  var cancelled: String,\n  @BeanProperty\n  var date: Integer,\n  @BeanProperty \n  var prediction: String ) {\n  def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)\n  def generate_id() = {id = \"%04d:%s:%s:%s:%s:%s\".format(year, month, dayofMonth, dayOfWeek, crsDepTime, flight_number)}\n}\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:13+0000",
+      "dateUpdated": "2019-10-31T10:11:25+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -182,7 +142,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -193,7 +154,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "res1: org.apache.zeppelin.dep.Dependency = org.apache.zeppelin.dep.Dependency@dea2483\n"
+            "data": "res1: org.apache.zeppelin.dep.Dependency = org.apache.zeppelin.dep.Dependency@793afefd\n"
           }
         ]
       },
@@ -201,17 +162,18 @@
       "jobName": "paragraph_1569409051545_-141692955",
       "id": "20190925-105731_273091578",
       "dateCreated": "2019-09-25T10:57:31+0000",
-      "dateStarted": "2019-10-23T12:22:13+0000",
-      "dateFinished": "2019-10-23T12:22:20+0000",
+      "dateStarted": "2019-10-31T10:11:25+0000",
+      "dateFinished": "2019-10-31T10:11:32+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3419"
+      "$$hashKey": "object:6468",
+      "title": "We need to re-introduce the data model Case Class before we can use it:"
     },
     {
       "title": "Enrich the FlightDelay data with weather data",
       "text": "%spark\nimport org.apache.spark.SparkContext._\n\nimport spark.implicits._\n\n\nval weatherDataFrame = sqlContext.read.option(\"header\", \"true\").option(\"inferschema\", \"true\").csv(\"/opt/gigaspaces/weather2017_8.csv\")\n\n\n//Add task for merging the weather and flight delays",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:20+0000",
+      "dateUpdated": "2019-10-31T10:11:32+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -244,16 +206,16 @@
       "jobName": "paragraph_1569132212523_258618609",
       "id": "20190818-160913_12361618",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:22:20+0000",
-      "dateFinished": "2019-10-23T12:22:44+0000",
+      "dateStarted": "2019-10-31T10:11:33+0000",
+      "dateFinished": "2019-10-31T10:12:04+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3420"
+      "$$hashKey": "object:6469"
     },
     {
-      "text": "%spark\n\nimport org.insightedge.spark.implicits.all._\nimport org.insightedge.spark.context.InsightEdgeConfig\n\n//Change space name here if not working with default\nval ieConfig = new InsightEdgeConfig(\"demo\")\n\nsc.initializeInsightEdgeContext(ieConfig)\n",
+      "text": "%spark\n\nimport org.insightedge.spark.implicits.all._\nimport org.insightedge.spark.context.InsightEdgeConfig\n\n//Change space name here if not working with default\nval ieConfig = new InsightEdgeConfig(\"flights_space\")\n\nsc.initializeInsightEdgeContext(ieConfig)\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:44+0000",
+      "dateUpdated": "2019-10-31T10:12:04+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -276,7 +238,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.insightedge.spark.implicits.all._\nimport org.insightedge.spark.context.InsightEdgeConfig\nieConfig: org.insightedge.spark.context.InsightEdgeConfig = InsightEdgeConfig(demo,None,None)\nres1: org.apache.spark.SparkContext = org.apache.spark.SparkContext@79fd78ed\n"
+            "data": "import org.insightedge.spark.implicits.all._\nimport org.insightedge.spark.context.InsightEdgeConfig\nieConfig: org.insightedge.spark.context.InsightEdgeConfig = InsightEdgeConfig(flights_space,None,None)\nres1: org.apache.spark.SparkContext = org.apache.spark.SparkContext@4e8ec119\n"
           }
         ]
       },
@@ -284,17 +246,17 @@
       "jobName": "paragraph_1569418436965_201427215",
       "id": "20190925-133356_683462357",
       "dateCreated": "2019-09-25T13:33:56+0000",
-      "dateStarted": "2019-10-23T12:22:44+0000",
-      "dateFinished": "2019-10-23T12:22:45+0000",
+      "dateStarted": "2019-10-31T10:12:04+0000",
+      "dateFinished": "2019-10-31T10:12:05+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3421"
+      "$$hashKey": "object:6470"
     },
     {
-      "title": "Register the additional Types with the data grid",
+      "title": "Register the additional \"Weather\" Type with the data grid",
       "text": "import model.v1._\nimport com.gigaspaces.metadata._\nimport com.gigaspaces.metadata.index.SpaceIndexType;\nimport java.lang\nimport scala.beans.{BeanProperty}\nimport org.insightedge.scala.annotation._\nimport org.insightedge.spark.implicits.all._\n\n\nval typeDescriptor: SpaceTypeDescriptor = new SpaceTypeDescriptorBuilder(\"Weather\").idProperty(\"id\", true)\n                .addFixedProperty(\"Date\", \"java.lang.String\")\n                .addFixedProperty(\"Station\", \"java.lang.String\")\n                .addPropertyIndex(\"Date\", SpaceIndexType.EQUAL)\n                .addPropertyIndex(\"Station\", SpaceIndexType.EQUAL)\n                .routingProperty(\"Date\")\n                .create();\n                \n        // Register type:\nsc.grid.getTypeManager().registerTypeDescriptor(typeDescriptor)\nsc.grid.getTypeManager.registerTypeDescriptor(classOf[FlightDelaysWithWeather])\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:45+0000",
+      "dateUpdated": "2019-10-31T10:12:05+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -318,7 +280,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "2019-10-23 12:22:47,334 CONFIG [com.gigaspaces.logger] - Log file: /opt/gigaspaces/logs/2019-10-23~12.22-gigaspaces-service-10.4.0.125-605.log\nimport model.v1._\nimport com.gigaspaces.metadata._\nimport com.gigaspaces.metadata.index.SpaceIndexType\nimport java.lang\nimport scala.beans.BeanProperty\nimport org.insightedge.scala.annotation._\nimport org.insightedge.spark.implicits.all._\ntypeDescriptor: com.gigaspaces.metadata.SpaceTypeDescriptor = TypeDesc[typeName=Weather, checksum=2012354847, codebase=null, superTypesNames=[Weather, java.lang.Object], supportsDynamicProperties=true, supportsOptimisticLocking=false, systemType=false, replicatable=true, blobstoreEnabled=true, storageType=OBJECT, fifoSupport=OFF, idPropertyName=id, idAutoGenerate=true, routingPropertyName=Date, fifoGroupingPropertyName=null, sequenceNumberPropertyName=null, objectClass=, documentWrapperClass=com.gigaspaces.document.SpaceDocument, fixedProperties=[Prope..."
+            "data": "2019-10-31 10:12:08,525 CONFIG [com.gigaspaces.logger] - Log file: /opt/gigaspaces/logs/2019-10-31~10.12-gigaspaces-service-10.4.1.141-792.log\nimport model.v1._\nimport com.gigaspaces.metadata._\nimport com.gigaspaces.metadata.index.SpaceIndexType\nimport java.lang\nimport scala.beans.BeanProperty\nimport org.insightedge.scala.annotation._\nimport org.insightedge.spark.implicits.all._\ntypeDescriptor: com.gigaspaces.metadata.SpaceTypeDescriptor = TypeDesc[typeName=Weather, checksum=2012354847, codebase=null, superTypesNames=[Weather, java.lang.Object], supportsDynamicProperties=true, supportsOptimisticLocking=false, systemType=false, replicatable=true, blobstoreEnabled=true, storageType=OBJECT, fifoSupport=OFF, idPropertyName=id, idAutoGenerate=true, routingPropertyName=Date, fifoGroupingPropertyName=null, sequenceNumberPropertyName=null, objectClass=, documentWrapperClass=com.gigaspaces.document.SpaceDocument, fixedProperties=[Prope..."
           }
         ]
       },
@@ -326,17 +288,17 @@
       "jobName": "paragraph_1569132212524_6434100",
       "id": "20190827-234813_998795403",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:22:45+0000",
-      "dateFinished": "2019-10-23T12:22:49+0000",
+      "dateStarted": "2019-10-31T10:12:05+0000",
+      "dateFinished": "2019-10-31T10:12:11+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3422"
+      "$$hashKey": "object:6471"
     },
     {
       "title": "Write the weather data to memory",
       "text": "%spark\nimport org.apache.spark.sql.SaveMode\n\nsc.grid.clear(\"Weather\")\nweatherDataFrame.write.mode(SaveMode.Overwrite).grid(\"Weather\")",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:49+0000",
+      "dateUpdated": "2019-10-31T10:12:11+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -368,17 +330,60 @@
       "jobName": "paragraph_1569132212524_-90377343",
       "id": "20190827-235037_392240904",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:22:49+0000",
-      "dateFinished": "2019-10-23T12:22:51+0000",
+      "dateStarted": "2019-10-31T10:12:11+0000",
+      "dateFinished": "2019-10-31T10:12:15+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3423"
+      "$$hashKey": "object:6472"
+    },
+    {
+      "text": "%md\n\n## Merge the weather and flight delays data together\n##### In the previous notebook we wrote the Flight Delays data to the memory grid\n##### In the notebook we wrote weather data for the same time period to the memory grid\n##### in the next paragraph, we define a distributed task that we will excute on the memory grid, \n##### this task will be sent to all the grid partitions and will execute the code below which will merge the weather data to the Flight Delays objects.\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-10-31T10:12:15+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1572515778068_837362096",
+      "id": "20191031-095618_1420923713",
+      "dateCreated": "2019-10-31T09:56:18+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:12081",
+      "dateFinished": "2019-10-31T10:12:15+0000",
+      "dateStarted": "2019-10-31T10:12:15+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Merge the weather and flight delays data together</h2>\n<h5>In the previous notebook we wrote the Flight Delays data to the memory grid</h5>\n<h5>In the notebook we wrote weather data for the same time period to the memory grid</h5>\n<h5>in the next paragraph, we define a distributed task that we will excute on the memory grid,</h5>\n<h5>this task will be sent to all the grid partitions and will execute the code below which will merge the weather data to the Flight Delays objects.</h5>\n</div>"
+          }
+        ]
+      }
     },
     {
       "title": "Define a task to enrich the flights delay records with relevant weather metrics",
       "text": "%spark\nimport  model.v1._\nimport com.gigaspaces.async.AsyncResult\nimport org.openspaces.core.executor.DistributedTask\nimport org.insightedge.scala.annotation._\nimport scala.collection.JavaConversions._\nimport org.slf4j.{Logger, LoggerFactory}\nimport org.openspaces.core.GigaSpace\nimport org.openspaces.core.executor.TaskGigaSpace\nimport scala.beans.{BeanProperty}\nimport com.gigaspaces.document.SpaceDocument\nimport scala.collection.mutable.ListBuffer\nimport com.j_spaces.core.client.SQLQuery\n\n\nclass MergeTask extends DistributedTask[java.lang.Integer, java.lang.Integer] {\n  private val logger = LoggerFactory.getLogger(classOf[MergeTask])\n  @TaskGigaSpace @transient private val gs: GigaSpace = null\n\noverride def execute(): Integer = {\n    if(gs != null) {\n      val clusteredProxy = gs.getClustered()\n      logger.info(\"execute returned from: \" + gs.getSpaceName)\n        val template =new SQLQuery[FlightDelaysWithWeather](classOf[FlightDelaysWithWeather], \"tmin is null\")\n        val weatherTemplate =new SpaceDocument(\"Weather\");\n        var writtenCount:Integer = 0\n        var retArray:Array[FlightDelaysWithWeather] = null\n        logger.info(\"Created template\")\n        try {\n            while ( {retArray = gs.takeMultiple(template, 1000);retArray  != null && retArray.length > 0}) {\n                var writeCollection = new ListBuffer[FlightDelaysWithWeather]\n                for (rec <- retArray) {\n                  val dateField:Int = (\"%d%02d%02d\".format(rec.year.toInt, rec.month.toInt, rec.dayofMonth.toInt)).toInt\n                  val origin:String =  rec.origin\n                  weatherTemplate.setProperty(\"Date\", dateField)\n                  weatherTemplate.setProperty(\"Station\", origin)\n                  val weather = clusteredProxy.read(weatherTemplate)\n                  if (weather != null) {\n                    rec.awnd = \"\" + weather.getProperty(\"AWND\")\n                    rec.prcp = \"\" + weather.getProperty(\"PRCP\")\n                    rec.snow = \"\" + weather.getProperty(\"SNOW\")\n                    rec.tmin = \"\" + weather.getProperty(\"TMIN\")\n                    rec.tmax = \"\" + weather.getProperty(\"TMAX\")\n                    rec.date =  dateField\n                    writeCollection += rec\n                  }\n                }\n                if(writeCollection.length > 0) {\n                    gs.writeMultiple(writeCollection.toArray)\n                } \n                writtenCount += writeCollection.length\n            }\n        } catch {\n            case e: Exception => logger.warn(e.getMessage, e)\n        }\n      logger.info(\"Finished task \" + writtenCount)\n\n      return writtenCount\n    } else {\n      logger.info(\"gs Proxy not available\")\n        return -1\n        \n    }\n  }\n  override def reduce(results: java.util.List[AsyncResult[Integer]]): java.lang.Integer = {\n    logger.info(\"In Reduce\")\n    return results.map(_.getResult().intValue()).sum\n  }}\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:51+0000",
+      "dateUpdated": "2019-10-31T10:12:15+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -410,17 +415,17 @@
       "jobName": "paragraph_1569401411681_1667034538",
       "id": "20190925-085011_609572142",
       "dateCreated": "2019-09-25T08:50:11+0000",
-      "dateStarted": "2019-10-23T12:22:51+0000",
-      "dateFinished": "2019-10-23T12:22:54+0000",
+      "dateStarted": "2019-10-31T10:12:15+0000",
+      "dateFinished": "2019-10-31T10:12:17+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3424"
+      "$$hashKey": "object:6473"
     },
     {
       "title": "Execute the distributed task and get the enriched data as a Spark dataframe",
       "text": "%spark\nimport com.gigaspaces.async.AsyncFuture;\nimport org.insightedge.spark.implicits.all._\n\nval future:AsyncFuture[Integer] = sc.grid.execute(new MergeTask())\nval result = future.get()\n\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:22:54+0000",
+      "dateUpdated": "2019-10-31T10:12:17+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -444,7 +449,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import com.gigaspaces.async.AsyncFuture\nimport org.insightedge.spark.implicits.all._\nfuture: com.gigaspaces.async.AsyncFuture[Integer] = org.openspaces.core.transaction.internal.InternalAsyncFuture@3821049\nresult: Integer = 525155\n"
+            "data": "import com.gigaspaces.async.AsyncFuture\nimport org.insightedge.spark.implicits.all._\nfuture: com.gigaspaces.async.AsyncFuture[Integer] = org.openspaces.core.transaction.internal.InternalAsyncFuture@f43b664\nresult: Integer = 525155\n"
           }
         ]
       },
@@ -452,17 +457,17 @@
       "jobName": "paragraph_1569132212526_-1931848953",
       "id": "20190831-224510_2052488220",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:22:54+0000",
-      "dateFinished": "2019-10-23T12:23:56+0000",
+      "dateStarted": "2019-10-31T10:12:18+0000",
+      "dateFinished": "2019-10-31T10:13:33+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3425"
+      "$$hashKey": "object:6474"
     },
     {
       "title": "Review the enriched data",
       "text": "%insightedge_jdbc\n\nselect carrier , origin, dest, depDelay, awnd, prcp, snow, tmin, tmax   from FlightDelaysWithWeather where awnd is not null limit 20\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:23:56+0000",
+      "dateUpdated": "2019-10-31T10:13:33+0000",
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -523,7 +528,7 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "carrier\torigin\tdest\tdepDelay\tawnd\tprcp\tsnow\ttmin\ttmax\nOO\tDEN\tRDU\t-1.0\t38\t0\t0\t-88\t83\nOO\tORD\tDCA\t0.0\t22\t0\t0\t-82\t44\nOO\tDEN\tFAT\t-3.0\t38\t0\t0\t-88\t83\nOO\tSFO\tLAX\t15.0\t69\t13\t0\t78\t122\nOO\tORD\tAUS\t1.0\t22\t0\t0\t-82\t44\nOO\tORD\tDFW\t-5.0\t22\t0\t0\t-82\t44\nOO\tORD\tASE\t11.0\t22\t0\t0\t-82\t44\nOO\tDEN\tBNA\t-5.0\t38\t0\t0\t-88\t83\nOO\tORD\tDSM\t-3.0\t22\t0\t0\t-82\t44\nOO\tORD\tMKE\t-6.0\t28\t28\t0\t-38\t44\nOO\tDEN\tSEA\t23.0\t56\t0\t0\t-93\t111\nOO\tDEN\tSGU\t8.0\t56\t0\t0\t-93\t111\nOO\tSFO\tOTH\t32.0\t33\t46\t0\t67\t111\nOO\tDEN\tCPR\t-7.0\t56\t0\t0\t-93\t111\nOO\tORD\tGRR\t0.0\t28\t28\t0\t-38\t44\nOO\tORD\tMSN\t41.0\t28\t28\t0\t-38\t44\nOO\tSFO\tPSP\t4.0\t33\t46\t0\t67\t111\nOO\tORD\tATW\t-4.0\t28\t28\t0\t-38\t44\nOO\tSFO\tABQ\t34.0\t33\t46\t0\t67\t111\nOO\tORD\tBHM\t-4.0\t28\t28\t0\t-38\t44\n"
+            "data": "carrier\torigin\tdest\tdepDelay\tawnd\tprcp\tsnow\ttmin\ttmax\nB6\tSFO\tFLL\t86.0\t28\t76\t0\t72\t111\nB6\tORD\tBOS\t-7.0\t43\t122\t0\t17\t39\nB6\tSFO\tBOS\t-12.0\t33\t46\t0\t67\t111\nB6\tDEN\tBOS\t3.0\t56\t0\t0\t-93\t111\nB6\tSFO\tBOS\t2.0\t38\t0\t0\t50\t106\nB6\tORD\tFLL\t11.0\t43\t122\t0\t17\t39\nB6\tSFO\tFLL\t-7.0\t18\t0\t0\t50\t111\nB6\tSFO\tJFK\t-8.0\t35\t0\t0\t67\t122\nF9\tDEN\tDTW\t-3.0\t49\t0\t0\t-77\t44\nF9\tDEN\tRSW\t-3.0\t49\t0\t0\t-77\t44\nF9\tDEN\tMSY\t12.0\t17\t0\t0\t-77\t39\nF9\tDFW\tDEN\t27.0\t48\t51\t0\t50\t94\nF9\tDEN\tPDX\t12.0\t17\t0\t0\t-77\t39\nF9\tDEN\tMSY\t15.0\t26\t0\t0\t-55\t56\nF9\tDEN\tIND\t28.0\t26\t0\t0\t-55\t56\nF9\tORD\tLAX\t-4.0\t21\t0\t0\t-60\t17\nF9\tDEN\tCLE\t-7.0\t26\t0\t0\t-55\t56\nF9\tSFO\tCVG\t12.0\t12\t0\t0\t50\t111\nF9\tDEN\tTPA\t1.0\t26\t0\t0\t-55\t17\nF9\tDEN\tCVG\t-7.0\t26\t0\t0\t-55\t17\n"
           }
         ]
       },
@@ -531,16 +536,16 @@
       "jobName": "paragraph_1569132212527_529455456",
       "id": "20190818-171934_1385212060",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:23:56+0000",
-      "dateFinished": "2019-10-23T12:23:57+0000",
+      "dateStarted": "2019-10-31T10:13:33+0000",
+      "dateFinished": "2019-10-31T10:13:35+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3426"
+      "$$hashKey": "object:6475"
     },
     {
       "text": "%md\n\n### Preparing Feature Vectors\n\nIn the last stage of the data processing, we use the merged data to prepare feature vectors for all the fields we want to fit in our model, and label each vector with the resulting delay. nAs mentioned earlier, a positive number is the delay (in minutes) while a negative number indicates a flight that was early.\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:23:57+0000",
+      "dateUpdated": "2019-10-31T10:13:35+0000",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -573,17 +578,17 @@
       "jobName": "paragraph_1569132212527_-2064864035",
       "id": "20190826-023258_963848778",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:23:57+0000",
-      "dateFinished": "2019-10-23T12:23:57+0000",
+      "dateStarted": "2019-10-31T10:13:35+0000",
+      "dateFinished": "2019-10-31T10:13:35+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3427"
+      "$$hashKey": "object:6476"
     },
     {
       "title": "Prepare the feature vector for the ML model",
       "text": "%spark\nimport spark.implicits._\nimport org.apache.spark.rdd.RDD\nimport org.apache.spark.sql.Dataset\nimport org.apache.spark.mllib.regression.LabeledPoint\nimport org.apache.spark.mllib.linalg.Vectors\nimport org.apache.spark.mllib.feature.StandardScaler\nimport org.insightedge.scala.annotation._\nimport scala.beans.{BeanProperty}\n\n\ndef parseData(vals: Array[Double]): LabeledPoint = {\n   LabeledPoint(vals(0), Vectors.dense(vals.drop(1)))\n}\n\ndef prepareFeaturesLabeledPoint(_flightDelayswithWeatherDataSet: Dataset[FlightDelaysWithWeather]): RDD[LabeledPoint] = {\n    val featuresVectors = _flightDelayswithWeatherDataSet.map((o: FlightDelaysWithWeather) => Array(o.depDelay15.doubleValue(),  o.month.toDouble, o.dayOfWeek.toDouble,\n        (\"%04d\".format(o.crsDepTime.toInt).take(2)).toDouble, o.awnd.toDouble, o.prcp.toDouble, o.tmax.toDouble, o.tmin.toDouble))    \n     featuresVectors.rdd.map(parseData)\n} \n\nval FlightDelaysWithWeatherDataframe =  spark.read.grid[FlightDelaysWithWeather].as[FlightDelaysWithWeather]\n\nval traningData = prepareFeaturesLabeledPoint(FlightDelaysWithWeatherDataframe.filter(\"Year = 2017\"))\nval validationData = prepareFeaturesLabeledPoint(FlightDelaysWithWeatherDataframe.filter(\"Year = 2018\"))\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:23:57+0000",
+      "dateUpdated": "2019-10-31T10:13:35+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -616,16 +621,16 @@
       "jobName": "paragraph_1569132212530_1726418726",
       "id": "20190819-134542_2030099805",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:23:57+0000",
-      "dateFinished": "2019-10-23T12:24:04+0000",
+      "dateStarted": "2019-10-31T10:13:36+0000",
+      "dateFinished": "2019-10-31T10:13:46+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3428"
+      "$$hashKey": "object:6477"
     },
     {
       "text": "%md\n\n### Training the ML Model\n\nWe are using the Random Forest model (forest of decision trees) with the Classification strategy. The 2017 data, which we prepared before, will be used to train the model.  The result is a fitted or trained model.\n\nAfter we train the model, we'll evalute it using the helper `eval_metrics` and `Metrics` class to rate each prediction as follows:\n\n* TP - True Positive\n* TN - True Negative\n* FP - False Positive\n* FN - False Negative \n\nWe can then sum it to evalute the model's accuracy.\n\nAfter the training with the 2017 data, we'll run the model with the 2018 data and decide if the accuracy satisfies our requirements.\n\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:24:04+0000",
+      "dateUpdated": "2019-10-31T10:13:46+0000",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -658,17 +663,17 @@
       "jobName": "paragraph_1569132212530_-1509481850",
       "id": "20190826-025537_806156844",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:24:05+0000",
-      "dateFinished": "2019-10-23T12:24:05+0000",
+      "dateStarted": "2019-10-31T10:13:46+0000",
+      "dateFinished": "2019-10-31T10:13:46+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3429"
+      "$$hashKey": "object:6478"
     },
     {
       "title": "Train the ML model and save it to the data grid",
       "text": "%spark\n\nimport org.apache.spark.mllib.tree.RandomForest\nimport org.apache.spark.mllib.tree.configuration.Strategy\nimport org.insightedge.spark.implicits.all._\n\n\nval treeStrategy = Strategy.defaultStrategy(\"Classification\")\nval numTrees = 10 \nval featureSubsetStrategy = \"auto\" // Let the algorithm choose\nval predictFlightDelaysRFModel = RandomForest.trainClassifier(traningData, treeStrategy, numTrees, featureSubsetStrategy, seed = 123)\n//predictFlightDelaysRFModel.saveToGrid(sc, \"predictFlightDelaysRFModel\")",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:24:05+0000",
+      "dateUpdated": "2019-10-31T10:13:46+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -693,7 +698,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.mllib.tree.RandomForest\nimport org.apache.spark.mllib.tree.configuration.Strategy\nimport org.insightedge.spark.implicits.all._\ntreeStrategy: org.apache.spark.mllib.tree.configuration.Strategy = org.apache.spark.mllib.tree.configuration.Strategy@50f3eb58\nnumTrees: Int = 10\nfeatureSubsetStrategy: String = auto\npredictFlightDelaysRFModel: org.apache.spark.mllib.tree.model.RandomForestModel =\nTreeEnsembleModel classifier with 10 trees\n"
+            "data": "import org.apache.spark.mllib.tree.RandomForest\nimport org.apache.spark.mllib.tree.configuration.Strategy\nimport org.insightedge.spark.implicits.all._\ntreeStrategy: org.apache.spark.mllib.tree.configuration.Strategy = org.apache.spark.mllib.tree.configuration.Strategy@54bf88e4\nnumTrees: Int = 10\nfeatureSubsetStrategy: String = auto\npredictFlightDelaysRFModel: org.apache.spark.mllib.tree.model.RandomForestModel =\nTreeEnsembleModel classifier with 10 trees\n"
           }
         ]
       },
@@ -701,17 +706,17 @@
       "jobName": "paragraph_1569132212531_40481042",
       "id": "20190820-105429_26620422",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:24:05+0000",
-      "dateFinished": "2019-10-23T12:25:03+0000",
+      "dateStarted": "2019-10-31T10:13:46+0000",
+      "dateFinished": "2019-10-31T10:14:52+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3430"
+      "$$hashKey": "object:6479"
     },
     {
       "title": "Define the performance metrics",
       "text": "%spark\nimport org.apache.spark.rdd._\nimport org.apache.spark.rdd.RDD\n\n// Function to compute evaluation metrics\ndef eval_metrics(labelsAndPreds: RDD[(Double, Double)]) : Tuple2[Array[Double], Array[Double]] = {\n    val tp = labelsAndPreds.filter(r => r._1==1 && r._2==1).count.toDouble\n    val tn = labelsAndPreds.filter(r => r._1==0 && r._2==0).count.toDouble\n    val fp = labelsAndPreds.filter(r => r._1==1 && r._2==0).count.toDouble\n    val fn = labelsAndPreds.filter(r => r._1==0 && r._2==1).count.toDouble\n    \n    val precision = tp / (tp+fp)\n    val recall = tp / (tp+fn)\n    val F_measure = 2*precision*recall / (precision+recall)\n    val accuracy = (tp+tn) / (tp+tn+fp+fn)\n    new Tuple2(Array(tp, tn, fp, fn), Array(precision, recall, F_measure, accuracy))\n}\n\n\nclass Metrics(labelsAndPreds: RDD[(Double, Double)]) extends java.io.Serializable {\n\n    private def filterCount(lftBnd:Int,rtBnd:Int):Double = labelsAndPreds\n                                                           .map(x => (x._1.toInt, x._2.toInt))\n                                                           .filter(_ == (lftBnd,rtBnd)).count()\n\n    lazy val tp = filterCount(1,1)  // true positives\n    lazy val tn = filterCount(0,0)  // true negatives\n    lazy val fp = filterCount(0,1)  // false positives\n    lazy val fn = filterCount(1,0)  // false negatives\n\n    lazy val precision = tp / (tp+fp)\n    lazy val recall = tp / (tp+fn)\n    lazy val F1 = 2*precision*recall / (precision+recall)\n    lazy val accuracy = (tp+tn) / (tp+tn+fp+fn)\n}",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:25:03+0000",
+      "dateUpdated": "2019-10-31T10:14:52+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -743,17 +748,17 @@
       "jobName": "paragraph_1569132212531_-1159061363",
       "id": "20190825-015117_1946128941",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:25:03+0000",
-      "dateFinished": "2019-10-23T12:25:05+0000",
+      "dateStarted": "2019-10-31T10:14:52+0000",
+      "dateFinished": "2019-10-31T10:14:53+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3431"
+      "$$hashKey": "object:6480"
     },
     {
       "title": "Evaluate the model on the test data",
       "text": "%spark\nprintln(validationData)\nval predictionsResultsComparedToActual = validationData.map { point =>\n    val prediction = predictFlightDelaysRFModel.predict(point.features)\n    (point.label, prediction)\n}\npredictionsResultsComparedToActual.map(println)\nval modelMetrics = new Metrics(predictionsResultsComparedToActual)\nprintln(\"accuracy = %.2f\"\n        .format(modelMetrics.accuracy))\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:25:05+0000",
+      "dateUpdated": "2019-10-31T10:14:53+0000",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -778,7 +783,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "MapPartitionsRDD[30] at map at <console>:88\naccuracy = 0.79\npredictionsResultsComparedToActual: org.apache.spark.rdd.RDD[(Double, Double)] = MapPartitionsRDD[70] at map at <console>:98\nmodelMetrics: Metrics = Metrics@1d84eab\n"
+            "data": "MapPartitionsRDD[30] at map at <console>:88\naccuracy = 0.79\npredictionsResultsComparedToActual: org.apache.spark.rdd.RDD[(Double, Double)] = MapPartitionsRDD[70] at map at <console>:98\nmodelMetrics: Metrics = Metrics@216770f8\n"
           }
         ]
       },
@@ -786,16 +791,16 @@
       "jobName": "paragraph_1569132212532_1605416256",
       "id": "20190825-003059_736568661",
       "dateCreated": "2019-09-22T06:03:32+0000",
-      "dateStarted": "2019-10-23T12:25:05+0000",
-      "dateFinished": "2019-10-23T12:25:57+0000",
+      "dateStarted": "2019-10-31T10:14:53+0000",
+      "dateFinished": "2019-10-31T10:15:41+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3432"
+      "$$hashKey": "object:6481"
     },
     {
-      "text": "%spark\nimport kafka.serializer.StringDecoder\nimport model.v1._\nimport org.apache.spark.streaming._\nimport org.apache.spark.streaming.kafka._\nimport com.google.gson.Gson\n\n\n\n    val ssc = new StreamingContext(sc, Seconds(2))\n    val topics = \"flights\"\n    val topicsSet = topics.split(\",\").toSet\n    val kafkaParams = Map[String, String](\"metadata.broker.list\" -> System.getenv(\"KAFKA_URL\"))\n    val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](\n      ssc, kafkaParams, topicsSet)\nmessages.foreachRDD { rdd =>\n  rdd.toDF().createOrReplaceTempView(\"delays\")\n   }\n\nssc.start\n\n",
+      "text": "%spark\nimport kafka.serializer.StringDecoder\nimport model.v1._\nimport org.apache.spark.streaming._\nimport org.apache.spark.streaming.kafka._\nimport com.google.gson.Gson\n\n\n\n    val ssc = new StreamingContext(sc, Seconds(2))\n    val topics = \"flights\"\n    val topicsSet = topics.split(\",\").toSet\n    val kafkaParams = Map[String, String](\"metadata.broker.list\" -> System.getenv(\"KAFKA_URL\"))\n    val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](\n      ssc, kafkaParams, topicsSet)\n    messages.map { o =>\n        val gson = new Gson()\n        val fd = gson.fromJson( o._2, classOf[FlightDelaysWithWeather])\n        fd.generate_id()\n        fd.prediction = \"for_calc\"\n        fd\n   }.saveToGrid()\n\nssc.start\n\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:25:57+0000",
+      "dateUpdated": "2019-10-31T10:28:27+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -807,7 +812,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -818,7 +824,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import kafka.serializer.StringDecoder\nimport model.v1._\nimport org.apache.spark.streaming._\nimport org.apache.spark.streaming.kafka._\nimport com.google.gson.Gson\nssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@72a835ba\ntopics: String = flights\ntopicsSet: scala.collection.immutable.Set[String] = Set(flights)\nkafkaParams: scala.collection.immutable.Map[String,String] = Map(metadata.broker.list -> ljkyi-kafka-headless:9092)\nmessages: org.apache.spark.streaming.dstream.InputDStream[(String, String)] = org.apache.spark.streaming.kafka.DirectKafkaInputDStream@71483dda\n"
+            "data": "import kafka.serializer.StringDecoder\nimport model.v1._\nimport org.apache.spark.streaming._\nimport org.apache.spark.streaming.kafka._\nimport com.google.gson.Gson\nssc: org.apache.spark.streaming.StreamingContext = org.apache.spark.streaming.StreamingContext@23122298\ntopics: String = flights\ntopicsSet: scala.collection.immutable.Set[String] = Set(flights)\nkafkaParams: scala.collection.immutable.Map[String,String] = Map(metadata.broker.list -> nofl6-kafka-headless:9092)\nmessages: org.apache.spark.streaming.dstream.InputDStream[(String, String)] = org.apache.spark.streaming.kafka.DirectKafkaInputDStream@30fc9b9f\n"
           }
         ]
       },
@@ -826,16 +832,17 @@
       "jobName": "paragraph_1569409233858_-2070858439",
       "id": "20190925-110033_1852097161",
       "dateCreated": "2019-09-25T11:00:33+0000",
-      "dateStarted": "2019-10-23T12:25:57+0000",
-      "dateFinished": "2019-10-23T12:26:01+0000",
+      "dateStarted": "2019-10-31T10:15:41+0000",
+      "dateFinished": "2019-10-31T10:15:44+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3433"
+      "$$hashKey": "object:6482",
+      "title": "Use Spark Streaming for streaming flights data from Kafka and store it in the memory grid"
     },
     {
-      "text": "%spark\n\nval msgs = spark.sql(\"select * from delays\")\n\nval flightDelayPredictions = msgs.map{o => \n                        val gson = new Gson()\n                        val s: String = o(1).asInstanceOf[String]\n                        val fd = gson.fromJson( s, classOf[FlightDelaysWithWeather])\n                        fd.generate_id()\n                        val featuresVector = Array(fd.month.toDouble, fd.dayOfWeek.toDouble,\n                            (\"%04d\".format(fd.crsDepTime.toInt).take(2)).toDouble, fd.awnd.toDouble, fd.prcp.toDouble, fd.tmax.toDouble, fd.tmin.toDouble)\n                        val prediction = predictFlightDelaysRFModel.predict( Vectors.dense(featuresVector))\n                        if(prediction > 0)\n                            fd.prediction = \"Delayed\"\n                        else\n                            fd.prediction = \"OK\"\n\n                        fd\n       \n   }\nflightDelayPredictions.rdd.saveToGrid()",
+      "text": "%spark\n\nval for_clac = spark.read.grid[FlightDelaysWithWeather].as[FlightDelaysWithWeather].where(\"prediction == 'for_calc'\")\n\nval flightDelayPredictions = for_clac.map{fd => \n                        val featuresVector = Array(fd.month.toDouble, fd.dayOfWeek.toDouble,\n                            (\"%04d\".format(fd.crsDepTime.toInt).take(2)).toDouble, fd.awnd.toDouble, fd.prcp.toDouble, fd.tmax.toDouble, fd.tmin.toDouble)\n                        val prediction = predictFlightDelaysRFModel.predict( Vectors.dense(featuresVector))\n                        if(prediction > 0)\n                            fd.prediction = \"Delayed\"\n                        else\n                            fd.prediction = \"OK\"\n\n                        fd\n       \n   }.rdd.saveToGrid()\nprintln(\"Updated predictions for \" + for_clac.count + \" records\")",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:34:43+0000",
+      "dateUpdated": "2019-10-31T10:32:24+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -876,7 +883,8 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "title": true
       },
       "settings": {
         "params": {},
@@ -887,7 +895,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "msgs: org.apache.spark.sql.DataFrame = [_1: string, _2: string]\nflightDelayPredictions: org.apache.spark.sql.Dataset[model.v1.FlightDelaysWithWeather] = [id: string, carrier: string ... 18 more fields]\n"
+            "data": "Updated predictions for 20 records\nfor_clac: org.apache.spark.sql.Dataset[model.v1.FlightDelaysWithWeather] = [id: string, carrier: string ... 18 more fields]\nflightDelayPredictions: Unit = ()\n"
           }
         ]
       },
@@ -895,16 +903,17 @@
       "jobName": "paragraph_1571820266071_-1676134140",
       "id": "20191023-084426_853931483",
       "dateCreated": "2019-10-23T08:44:26+0000",
-      "dateStarted": "2019-10-23T12:34:43+0000",
-      "dateFinished": "2019-10-23T12:34:45+0000",
+      "dateStarted": "2019-10-31T10:32:24+0000",
+      "dateFinished": "2019-10-31T10:32:29+0000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "$$hashKey": "object:3434"
+      "$$hashKey": "object:6483",
+      "title": "Read the Flights data from the memory grid and run our model prediction on it"
     },
     {
       "text": "%insightedge_jdbc \n\nselect * from FlightDelaysWithWeather where prediction is not null limit 50\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:48:57+0000",
+      "dateUpdated": "2019-10-31T10:31:59+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -962,36 +971,37 @@
           "editOnDblClick": false,
           "completionSupport": true
         },
-        "editorMode": "ace/mode/sql"
+        "editorMode": "ace/mode/sql",
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "apps": [],
-      "jobName": "paragraph_1571833561691_-2036157628",
-      "id": "20191023-122601_348040933",
-      "dateCreated": "2019-10-23T12:26:01+0000",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500,
-      "focus": true,
-      "$$hashKey": "object:7627",
-      "dateFinished": "2019-10-23T12:48:57+0000",
-      "dateStarted": "2019-10-23T12:48:57+0000",
       "results": {
         "code": "SUCCESS",
         "msg": [
           {
             "type": "TABLE",
-            "data": "awnd\tcancelled\tcarrier\tcrsDepTime\tdate\tdayOfWeek\tdayofMonth\tdepDelay\tdepDelay15\tdest\tflight_number\tid\tmonth\torigin\tprcp\tprediction\tsnow\ttmax\ttmin\tyear\n0\t0.0\tAA\t835\tnull\t3.0\t16.0\t-4.0\t0.0\tMSP\t2397\t2019:1.0:16.0:3.0:835:2397\t1.0\tORD\t42\tOK\t0\t0\t11\t2019\n0\t0.0\tAA\t835\tnull\t5.0\t18.0\t-4.0\t0.0\tMSP\t2397\t2019:1.0:18.0:5.0:835:2397\t1.0\tORD\t47\tOK\t30\t33\t-5\t2019\n0\t0.0\tAA\t831\tnull\t7.0\t20.0\t-2.0\t0.0\tMSP\t2397\t2019:1.0:20.0:7.0:831:2397\t1.0\tORD\t60\tOK\t0\t0\t-99\t2019\n0\t0.0\tAA\t835\tnull\t3.0\t23.0\t33.0\t1.0\tMSP\t2397\t2019:1.0:23.0:3.0:835:2397\t1.0\tORD\t44\tOK\t56\t25\t11\t2019\n0\t0.0\tAA\t835\tnull\t5.0\t25.0\t-6.0\t0.0\tMSP\t2397\t2019:1.0:25.0:5.0:835:2397\t1.0\tORD\t42\tOK\t8\t18\t-149\t2019\n0\t0.0\tAA\t831\tnull\t7.0\t27.0\t3.0\t0.0\tMSP\t2397\t2019:1.0:27.0:7.0:831:2397\t1.0\tORD\t31\tOK\t0\t0\t-116\t2019\n1\t1.0\tAA\t835\tnull\t3.0\t30.0\t0.0\t0.0\tMSP\t2397\t2019:1.0:30.0:3.0:835:2397\t1.0\tORD\t68\tOK\t0\t0\t-232\t2019\n0\t0.0\tAA\t1220\tnull\t2.0\t1.0\t6.0\t0.0\tMCO\t2398\t2019:1.0:1.0:2.0:1220:2398\t1.0\tORD\t34\tOK\t3\t3\t11\t2019\n0\t0.0\tAA\t1220\tnull\t4.0\t3.0\t3.0\t0.0\tMCO\t2398\t2019:1.0:3.0:4.0:1220:2398\t1.0\tORD\t52\tOK\t0\t0\t33\t2019\n0\t0.0\tAA\t1220\tnull\t6.0\t5.0\t-7.0\t0.0\tMCO\t2398\t2019:1.0:5.0:6.0:1220:2398\t1.0\tORD\t37\tOK\t0\t0\t111\t2019\n0\t0.0\tAA\t1235\tnull\t3.0\t30.0\t-7.0\t0.0\tAUS\t2404\t2019:1.0:30.0:3.0:1235:2404\t1.0\tDFW\t29\tOK\t0\t0\t106\t2019\n0\t0.0\tAA\t1440\tnull\t4.0\t10.0\t-7.0\t0.0\tMSP\t2406\t2019:1.0:10.0:4.0:1440:2406\t1.0\tDFW\t30\tOK\t0\t0\t106\t2019\n0\t0.0\tAA\t1440\tnull\t3.0\t16.0\t-2.0\t0.0\tMSP\t2406\t2019:1.0:16.0:3.0:1440:2406\t1.0\tDFW\t60\tDelayed\t0\t0\t178\t2019\n0\t0.0\tAA\t1440\tnull\t2.0\t22.0\t10.0\t0.0\tMSP\t2406\t2019:1.0:22.0:2.0:1440:2406\t1.0\tDFW\t87\tDelayed\t5\t0\t161\t2019\n0\t0.0\tAA\t1852\tnull\t5.0\t18.0\t35.0\t1.0\tTPA\t2409\t2019:1.0:18.0:5.0:1852:2409\t1.0\tORD\t47\tOK\t30\t33\t-5\t2019\n0\t0.0\tAA\t1911\tnull\t7.0\t20.0\t68.0\t1.0\tTPA\t2409\t2019:1.0:20.0:7.0:1911:2409\t1.0\tORD\t60\tOK\t0\t0\t-99\t2019\n1\t1.0\tAA\t1852\tnull\t2.0\t22.0\t0.0\t0.0\tTPA\t2409\t2019:1.0:22.0:2.0:1852:2409\t1.0\tORD\t42\tOK\t46\t13\t6\t2019\n0\t0.0\tAA\t1852\tnull\t4.0\t24.0\t7.0\t0.0\tTPA\t2409\t2019:1.0:24.0:4.0:1852:2409\t1.0\tORD\t52\tOK\t0\t10\t-55\t2019\n0\t0.0\tAA\t1852\tnull\t6.0\t26.0\t101.0\t1.0\tTPA\t2409\t2019:1.0:26.0:6.0:1852:2409\t1.0\tORD\t26\tOK\t15\t43\t-110\t2019\n0\t0.0\tAA\t1852\tnull\t1.0\t28.0\t212.0\t1.0\tTPA\t2409\t2019:1.0:28.0:1.0:1852:2409\t1.0\tORD\t57\tOK\t135\t127\t11\t2019\n1\t1.0\tAA\t1852\tnull\t3.0\t30.0\t0.0\t0.0\tTPA\t2409\t2019:1.0:30.0:3.0:1852:2409\t1.0\tORD\t68\tOK\t0\t0\t-232\t2019\n0\t0.0\tAA\t904\tnull\t1.0\t7.0\t-12.0\t0.0\tHDN\t2410\t2019:1.0:7.0:1.0:904:2410\t1.0\tDFW\t52\tOK\t0\t0\t233\t2019\n0\t0.0\tAA\t1516\tnull\t3.0\t2.0\t-6.0\t0.0\tMCO\t2411\t2019:1.0:2.0:3.0:1516:2411\t1.0\tORD\t39\tOK\t3\t3\t-10\t2019\n0\t0.0\tAA\t1516\tnull\t5.0\t4.0\t68.0\t1.0\tMCO\t2411\t2019:1.0:4.0:5.0:1516:2411\t1.0\tORD\t36\tOK\t0\t0\t89\t2019\n0\t0.0\tAA\t1515\tnull\t1.0\t28.0\t303.0\t1.0\tMCO\t2411\t2019:1.0:28.0:1.0:1515:2411\t1.0\tORD\t57\tOK\t135\t127\t11\t2019\n1\t1.0\tAA\t850\tnull\t4.0\t3.0\t0.0\t0.0\tDFW\t2412\t2019:1.0:3.0:4.0:850:2412\t1.0\tORD\t52\tOK\t0\t0\t33\t2019\n0\t0.0\tAA\t850\tnull\t3.0\t9.0\t-5.0\t0.0\tDFW\t2412\t2019:1.0:9.0:3.0:850:2412\t1.0\tORD\t61\tOK\t0\t0\t-43\t2019\n0\t0.0\tAA\t1235\tnull\t4.0\t31.0\t-4.0\t0.0\tAUS\t2404\t2019:1.0:31.0:4.0:1235:2404\t1.0\tDFW\t41\tOK\t0\t0\t128\t2019\n0\t0.0\tAA\t1440\tnull\t5.0\t11.0\t16.0\t1.0\tMSP\t2406\t2019:1.0:11.0:5.0:1440:2406\t1.0\tDFW\t46\tDelayed\t102\t0\t122\t2019\n0\t0.0\tAA\t1440\tnull\t4.0\t17.0\t-2.0\t0.0\tMSP\t2406\t2019:1.0:17.0:4.0:1440:2406\t1.0\tDFW\t48\tDelayed\t0\t0\t144\t2019\n0\t0.0\tAA\t1440\tnull\t3.0\t23.0\t-4.0\t0.0\tMSP\t2406\t2019:1.0:23.0:3.0:1440:2406\t1.0\tDFW\t72\tDelayed\t0\t0\t89\t2019\n0\t0.0\tAA\t1515\tnull\t2.0\t29.0\t139.0\t1.0\tMCO\t2411\t2019:1.0:29.0:2.0:1515:2411\t1.0\tORD\t65\tOK\t0\t8\t-121\t2019\n0\t0.0\tAA\t850\tnull\t5.0\t4.0\t-5.0\t0.0\tDFW\t2412\t2019:1.0:4.0:5.0:850:2412\t1.0\tORD\t36\tOK\t0\t0\t89\t2019\n0\t0.0\tAA\t850\tnull\t4.0\t10.0\t-3.0\t0.0\tDFW\t2412\t2019:1.0:10.0:4.0:850:2412\t1.0\tORD\t20\tOK\t0\t0\t-43\t2019\n0\t0.0\tAA\t1440\tnull\t7.0\t6.0\t2.0\t0.0\tMSP\t2406\t2019:1.0:6.0:7.0:1440:2406\t1.0\tDFW\t62\tOK\t0\t0\t200\t2019\n0\t0.0\tAA\t1440\tnull\t6.0\t12.0\t-5.0\t0.0\tMSP\t2406\t2019:1.0:12.0:6.0:1440:2406\t1.0\tDFW\t71\tOK\t5\t0\t128\t2019\n0\t0.0\tAA\t1440\tnull\t5.0\t18.0\t31.0\t1.0\tMSP\t2406\t2019:1.0:18.0:5.0:1440:2406\t1.0\tDFW\t51\tDelayed\t3\t0\t206\t2019\n1\t1.0\tAA\t1515\tnull\t3.0\t30.0\t0.0\t0.0\tMCO\t2411\t2019:1.0:30.0:3.0:1515:2411\t1.0\tORD\t68\tOK\t0\t0\t-232\t2019\n0\t0.0\tAA\t850\tnull\t6.0\t5.0\t-5.0\t0.0\tDFW\t2412\t2019:1.0:5.0:6.0:850:2412\t1.0\tORD\t37\tOK\t0\t0\t111\t2019\n0\t0.0\tAA\t850\tnull\t5.0\t11.0\t19.0\t1.0\tDFW\t2412\t2019:1.0:11.0:5.0:850:2412\t1.0\tORD\t22\tOK\t0\t0\t-10\t2019\n0\t0.0\tAA\t835\tnull\t4.0\t17.0\t-7.0\t0.0\tMSP\t2397\t2019:1.0:17.0:4.0:835:2397\t1.0\tORD\t25\tOK\t0\t0\t17\t2019\n1\t1.0\tAA\t831\tnull\t6.0\t19.0\t0.0\t0.0\tMSP\t2397\t2019:1.0:19.0:6.0:831:2397\t1.0\tORD\t90\tOK\t46\t94\t-21\t2019\n0\t0.0\tAA\t835\tnull\t1.0\t21.0\t-7.0\t0.0\tMSP\t2397\t2019:1.0:21.0:1.0:835:2397\t1.0\tORD\t38\tOK\t0\t3\t-82\t2019\n0\t0.0\tAA\t835\tnull\t4.0\t24.0\t-6.0\t0.0\tMSP\t2397\t2019:1.0:24.0:4.0:835:2397\t1.0\tORD\t52\tOK\t0\t10\t-55\t2019\n0\t0.0\tAA\t831\tnull\t6.0\t26.0\t-8.0\t0.0\tMSP\t2397\t2019:1.0:26.0:6.0:831:2397\t1.0\tORD\t26\tOK\t15\t43\t-110\t2019\n0\t0.0\tAA\t835\tnull\t1.0\t28.0\t42.0\t1.0\tMSP\t2397\t2019:1.0:28.0:1.0:835:2397\t1.0\tORD\t57\tOK\t135\t127\t11\t2019\n1\t1.0\tAA\t835\tnull\t4.0\t31.0\t0.0\t0.0\tMSP\t2397\t2019:1.0:31.0:4.0:835:2397\t1.0\tORD\t28\tOK\t13\t20\t-171\t2019\n0\t0.0\tAA\t1220\tnull\t3.0\t2.0\t26.0\t1.0\tMCO\t2398\t2019:1.0:2.0:3.0:1220:2398\t1.0\tORD\t39\tOK\t3\t3\t-10\t2019\n0\t0.0\tAA\t1220\tnull\t5.0\t4.0\t-2.0\t0.0\tMCO\t2398\t2019:1.0:4.0:5.0:1220:2398\t1.0\tORD\t36\tOK\t0\t0\t89\t2019\n0\t0.0\tAA\t1155\tnull\t7.0\t6.0\t-7.0\t0.0\tMCO\t2398\t2019:1.0:6.0:7.0:1155:2398\t1.0\tORD\t52\tOK\t0\t0\t44\t2019\n"
+            "data": "awnd\tcancelled\tcarrier\tcrsDepTime\tdate\tdayOfWeek\tdayofMonth\tdepDelay\tdepDelay15\tdest\tflight_number\tid\tmonth\torigin\tprcp\tprediction\tsnow\ttmax\ttmin\tyear\n0\t0.0\tOO\t1040\tnull\t7.0\t13.0\t-4.0\t0.0\tJAC\t5903\t2019:1.0:13.0:7.0:1040:5903\t1.0\tSFO\t13\tDelayed\t0\t0\t150\t2019\n0\t0.0\tOO\t1740\tnull\t7.0\t13.0\t4.0\t0.0\tBNA\t5917\t2019:1.0:13.0:7.0:1740:5917\t1.0\tDEN\t34\tDelayed\t0\t0\t17\t2019\n0\t0.0\tOO\t725\tnull\t7.0\t13.0\t-6.0\t0.0\tPSP\t5933\t2019:1.0:13.0:7.0:725:5933\t1.0\tSFO\t13\tOK\t0\t0\t150\t2019\n0\t0.0\tOO\t1115\tnull\t7.0\t13.0\t-6.0\t0.0\tCOD\t5969\t2019:1.0:13.0:7.0:1115:5969\t1.0\tDEN\t34\tDelayed\t0\t0\t17\t2019\n0\t0.0\tOO\t1905\tnull\t7.0\t13.0\t38.0\t1.0\tBFL\t5978\t2019:1.0:13.0:7.0:1905:5978\t1.0\tDEN\t34\tDelayed\t0\t0\t17\t2019\n0\t0.0\tOO\t1040\tnull\t7.0\t13.0\t-10.0\t0.0\tEGE\t5986\t2019:1.0:13.0:7.0:1040:5986\t1.0\tSFO\t13\tDelayed\t0\t0\t150\t2019\n0\t0.0\tOO\t1252\tnull\t7.0\t13.0\t-3.0\t0.0\tOMA\t5989\t2019:1.0:13.0:7.0:1252:5989\t1.0\tORD\t56\tOK\t3\t8\t-5\t2019\n0\t0.0\tOO\t1605\tnull\t7.0\t13.0\t-6.0\t0.0\tMFR\t5993\t2019:1.0:13.0:7.0:1605:5993\t1.0\tSFO\t13\tDelayed\t0\t0\t150\t2019\n0\t0.0\tOO\t1705\tnull\t7.0\t13.0\t-9.0\t0.0\tPHX\t5996\t2019:1.0:13.0:7.0:1705:5996\t1.0\tSFO\t13\tDelayed\t0\t0\t150\t2019\n0\t0.0\tOO\t1430\tnull\t1.0\t14.0\t-6.0\t0.0\tBTR\t2952\t2019:1.0:14.0:1.0:1430:2952\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t2035\tnull\t1.0\t14.0\t-9.0\t0.0\tJLN\t2959\t2019:1.0:14.0:1.0:2035:2959\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1115\tnull\t1.0\t14.0\t15.0\t1.0\tHDN\t2966\t2019:1.0:14.0:1.0:1115:2966\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t2036\tnull\t1.0\t14.0\t673.0\t1.0\tBNA\t2972\t2019:1.0:14.0:1.0:2036:2972\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t1817\tnull\t1.0\t14.0\t-3.0\t0.0\tDTW\t2984\t2019:1.0:14.0:1.0:1817:2984\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t950\tnull\t1.0\t14.0\t-8.0\t0.0\tASE\t2992\t2019:1.0:14.0:1.0:950:2992\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t715\tnull\t1.0\t14.0\t14.0\t0.0\tDTW\t2998\t2019:1.0:14.0:1.0:715:2998\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t840\tnull\t1.0\t14.0\t-6.0\t0.0\tSDF\t3008\t2019:1.0:14.0:1.0:840:3008\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t1635\tnull\t1.0\t14.0\t-3.0\t0.0\tHOU\t3025\t2019:1.0:14.0:1.0:1635:3025\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1848\tnull\t1.0\t14.0\t-9.0\t0.0\tHPN\t3045\t2019:1.0:14.0:1.0:1848:3045\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t2033\tnull\t1.0\t14.0\t13.0\t0.0\tGRB\t3053\t2019:1.0:14.0:1.0:2033:3053\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t1325\tnull\t1.0\t14.0\t11.0\t0.0\tDTW\t3076\t2019:1.0:14.0:1.0:1325:3076\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t815\tnull\t1.0\t14.0\t-2.0\t0.0\tIND\t3093\t2019:1.0:14.0:1.0:815:3093\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t835\tnull\t1.0\t14.0\t-5.0\t0.0\tMKE\t3113\t2019:1.0:14.0:1.0:835:3113\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t2200\tnull\t1.0\t14.0\t-5.0\t0.0\tICT\t3124\t2019:1.0:14.0:1.0:2200:3124\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t1529\tnull\t1.0\t14.0\t-8.0\t0.0\tPIB\t3128\t2019:1.0:14.0:1.0:1529:3128\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1450\tnull\t1.0\t14.0\t84.0\t1.0\tIND\t3141\t2019:1.0:14.0:1.0:1450:3141\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t2055\tnull\t1.0\t14.0\t-4.0\t0.0\tCLL\t3146\t2019:1.0:14.0:1.0:2055:3146\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t2235\tnull\t1.0\t14.0\t-4.0\t0.0\tSAF\t3164\t2019:1.0:14.0:1.0:2235:3164\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1855\tnull\t1.0\t14.0\t-11.0\t0.0\tECP\t3168\t2019:1.0:14.0:1.0:1855:3168\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1739\tnull\t1.0\t14.0\t-2.0\t0.0\tDTW\t3181\t2019:1.0:14.0:1.0:1739:3181\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t1655\tnull\t1.0\t14.0\t-8.0\t0.0\tBTR\t3185\t2019:1.0:14.0:1.0:1655:3185\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t2216\tnull\t1.0\t14.0\t-3.0\t0.0\tIND\t3190\t2019:1.0:14.0:1.0:2216:3190\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t1010\tnull\t1.0\t14.0\t-5.0\t0.0\tOKC\t3192\t2019:1.0:14.0:1.0:1010:3192\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t700\tnull\t1.0\t14.0\t-1.0\t0.0\tBNA\t3203\t2019:1.0:14.0:1.0:700:3203\t1.0\tDFW\t22\tOK\t0\t0\t72\t2019\n0\t0.0\tOO\t1441\tnull\t1.0\t14.0\t-7.0\t0.0\tHOU\t3212\t2019:1.0:14.0:1.0:1441:3212\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t705\tnull\t1.0\t14.0\t-1.0\t0.0\tBNA\t3225\t2019:1.0:14.0:1.0:705:3225\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t1223\tnull\t1.0\t14.0\t18.0\t1.0\tBTR\t3233\t2019:1.0:14.0:1.0:1223:3233\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t2226\tnull\t1.0\t14.0\t-7.0\t0.0\tROW\t3245\t2019:1.0:14.0:1.0:2226:3245\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t850\tnull\t1.0\t14.0\t-11.0\t0.0\tASE\t3250\t2019:1.0:14.0:1.0:850:3250\t1.0\tDFW\t22\tOK\t0\t0\t72\t2019\n0\t0.0\tOO\t2050\tnull\t1.0\t14.0\t0.0\t0.0\tMLU\t3257\t2019:1.0:14.0:1.0:2050:3257\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1430\tnull\t1.0\t14.0\t1.0\t0.0\tJAN\t3268\t2019:1.0:14.0:1.0:1430:3268\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1020\tnull\t1.0\t14.0\t-2.0\t0.0\tBTR\t3290\t2019:1.0:14.0:1.0:1020:3290\t1.0\tDFW\t22\tDelayed\t0\t0\t72\t2019\n0\t0.0\tOO\t1150\tnull\t1.0\t14.0\t-8.0\t0.0\tDAL\t3406\t2019:1.0:14.0:1.0:1150:3406\t1.0\tSFO\t24\tOK\t0\t0\t139\t2019\n0\t0.0\tOO\t700\tnull\t1.0\t14.0\t-4.0\t0.0\tJFK\t3595\t2019:1.0:14.0:1.0:700:3595\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t1644\tnull\t1.0\t14.0\t-1.0\t0.0\tSLC\t3636\t2019:1.0:14.0:1.0:1644:3636\t1.0\tSFO\t24\tOK\t0\t0\t139\t2019\n0\t0.0\tOO\t730\tnull\t1.0\t14.0\t0.0\t0.0\tLGA\t3757\t2019:1.0:14.0:1.0:730:3757\t1.0\tORD\t37\tOK\t0\t0\t-27\t2019\n0\t0.0\tOO\t1530\tnull\t1.0\t14.0\t25.0\t1.0\tLGA\t3779\t2019:1.0:14.0:1.0:1530:3779\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t1330\tnull\t1.0\t14.0\t18.0\t1.0\tLGA\t3786\t2019:1.0:14.0:1.0:1330:3786\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t1930\tnull\t1.0\t14.0\t111.0\t1.0\tLGA\t3803\t2019:1.0:14.0:1.0:1930:3803\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n0\t0.0\tOO\t1230\tnull\t1.0\t14.0\t12.0\t0.0\tLGA\t3806\t2019:1.0:14.0:1.0:1230:3806\t1.0\tORD\t37\tDelayed\t0\t0\t-27\t2019\n"
           }
         ]
-      }
+      },
+      "apps": [],
+      "jobName": "paragraph_1571833561691_-2036157628",
+      "id": "20191023-122601_348040933",
+      "dateCreated": "2019-10-23T12:26:01+0000",
+      "dateStarted": "2019-10-31T10:31:59+0000",
+      "dateFinished": "2019-10-31T10:32:00+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:6484",
+      "title": "Look at the predictions data"
     },
     {
       "text": "%insightedge_jdbc\nselect prediction, count(*) as \"count\" from FlightDelaysWithWeather group by prediction\n",
       "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:52:00+0000",
+      "dateUpdated": "2019-10-31T10:33:22+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -1028,66 +1038,36 @@
           }
         },
         "editorSetting": {
-          "language": "scala",
+          "language": "sql",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/sql",
+        "title": false
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "apps": [],
-      "jobName": "paragraph_1571833929754_948864732",
-      "id": "20191023-123209_886208345",
-      "dateCreated": "2019-10-23T12:32:09+0000",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500,
-      "focus": true,
-      "$$hashKey": "object:7682",
-      "dateFinished": "2019-10-23T12:51:37+0000",
-      "dateStarted": "2019-10-23T12:51:36+0000",
       "results": {
         "code": "SUCCESS",
         "msg": [
           {
             "type": "TABLE",
-            "data": "prediction\tcount\nDelayed\t10\nOK\t70\n"
+            "data": "prediction\tcount\nDelayed\t4412\nfor_calc\t50\nOK\t5608\n"
           }
         ]
-      }
-    },
-    {
-      "text": "%insightedge_jdbc\n",
-      "user": "anonymous",
-      "dateUpdated": "2019-10-23T12:49:03+0000",
-      "config": {
-        "colWidth": 12,
-        "fontSize": 9,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1571834943421_1952301875",
-      "id": "20191023-124903_986190872",
-      "dateCreated": "2019-10-23T12:49:03+0000",
-      "status": "READY",
+      "jobName": "paragraph_1571833929754_948864732",
+      "id": "20191023-123209_886208345",
+      "dateCreated": "2019-10-23T12:32:09+0000",
+      "dateStarted": "2019-10-31T10:32:31+0000",
+      "dateFinished": "2019-10-31T10:32:32+0000",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500,
-      "focus": true,
-      "$$hashKey": "object:18095"
+      "$$hashKey": "object:6485"
     }
   ],
   "name": "Getting Started/Flight Delays 2",

@@ -17,7 +17,7 @@ application_name: InsightEdge
 
 # version of this JovianX blueprint
 # semantic versioning
-version: 0.0.23
+version: 0.0.25
 
 main_endpoint_component: insightedge
 application_launch_timeout:
@@ -45,10 +45,6 @@ components:
     helm_set:
       - key: stam
         value: key
-#  - name: kafka
-#    version: 1.0.0
-#    provider: helm_chart
-#    helm_chart_name: kafka
   - name: insightedge
     version: 1.0.0
     provider: helm_chart 
@@ -56,6 +52,8 @@ components:
     helm_set:
       - key: pu.resources.limits.memory
         value: 2048Mi
+      - key: pu.spaceName
+        value: flights_space
       - key: zeppelin.kafka.url
         value: "{{ account://components/flightdelays/helm_release_name }}-kafka-headless:9092"
       - key: pu.metrics.influxdb_ip
@@ -67,101 +65,128 @@ components:
         service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-zeppelin-service"
         port: 9090
         path: /#/notebook/INSIGHTEDGE-GETTING-STARTED
-        type: entry_point
-        dns: '{{ account://end_company }}.cloud.gigaspaces.com'
-      - name: 'Grafana monitoring'
+        type: main_entry_point
+        dns: 'zeppelin.{{ account://end_company }}.cloud.gigaspaces.com'
+      - name: 'Grafana Monitoring'
         port: 80
         type: entry_point
+        dns: 'grafana.{{ account://end_company }}.cloud.gigaspaces.com'
         path: /
         service_name: "{{ account://components/grafana/helm_release_name }}-grafana"
-      - name: 'WebUI'
+      - name: 'Services UI'
         port: 8090
         type: entry_point
+        dns: 'srvui.{{ account://end_company }}.cloud.gigaspaces.com'
         path: /ui
         service_name: "{{ account://components/insightedge/helm_release_name }}-insightedge-manager-service"
 
+  - name: pu_jar
+    version: 1.0.0
+    provider: helm_chart 
+    helm_chart_name: insightedge-pu
+    helm_set:
+      - key: insightedge-pu.resources.limits.memory
+        value: 1024Mi
+      - key: metrics.influxdb_ip
+        value: "{{ account://components/grafana/helm_release_name }}-influxdb"
+      - key: metrics.grafana_ip
+        value: "{{ account://components/grafana/helm_release_name }}-grafana"
+      - key: space.name
+        value: flights_space
+      - key: name
+        value: flights_feeder
+      - key: manager.name
+        value: "{{ account://components/insightedge/helm_release_name }}"
+      - key: resourceUrl
+        value: "https://insightedge-gettingstarted.s3.amazonaws.com/kafka-pers-feeder.jar"
+      - key: lookup_group
+        value: "{{ account://components/insightedge/helm_release_name }}-group"
+      - key: java.options
+        value: "-Dorg.openspaces.pu.container.support.level=DEBUG -Dcom.gs.logging.debug=true -Dcom.gs.kafka_url={{ account://components/flightdelays/helm_release_name }}-kafka-headless:9092"
+
+
 settings_descriptors:
-  - name: cloudProvider
-    display: 'Cloud Provider'
-    input_type: radio
-    default: gcp
-    description_title: 'Choose your provider'
-    select_options:
-      - name: azure
-        display: 'Microsoft Azure'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: cloudProvider
-                value: azure
-          - name: insightedge
-            helm_set:
-              - key: enable
-                value: azure
-      - name: aws
-        display: 'Amazon Web Services'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/aws.png'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: cloudProvider
-                value: aws
-          - name: insightedge
-            helm_set:
-              - key: enable
-                value: aws
-      - name: gcp
-        display: 'Google Cloud Platform'
-        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/gcp.png'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: cloudProvider
-                value: gcp
-          - name: insightedge
-            helm_set:
-              - key: enable
-                value: gcp
-
-  - name: gcp_region
-    display: "GCP Region"
-    dependency:
-      name: cloudProvider
-      values:
-        - gcp
-    input_type: select
-    default: OREGON
-    select_options:
-      - name: OREGON
-        display: 'OREGON(us-west1)'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: gcp_region
-                value: us-west1
-      - name: LOS_ANGELES
-        display: 'LOS ANGELES(us-west2)'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: gcp_region
-                value: us-west2
-      - name: IOWA
-        display: 'IOWA(us-central1)'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: gcp_region
-                value: us-central1
-      - name: SOUTH_CAROLINA
-        display: 'SOUTH CAROLINA(us-east1)'
-        components:
-          - name: insightedge
-            helm_set:
-              - key: gcp_region
-                value: us-east1
-
+#  - name: cloudProvider
+#    display: 'Cloud Provider'
+#    input_type: radio
+#    default: gcp
+#    description_title: 'Choose your provider'
+#    select_options:
+#      - name: azure
+#        display: 'Microsoft Azure'
+#        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/azure.png'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: cloudProvider
+#                value: azure
+#          - name: insightedge
+#            helm_set:
+#              - key: enable
+#                value: azure
+#      - name: aws
+#        display: 'Amazon Web Services'
+#        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/aws.png'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: cloudProvider
+#                value: aws
+#          - name: insightedge
+#            helm_set:
+#              - key: enable
+#                value: aws
+#      - name: gcp
+#        display: 'Google Cloud Platform'
+#        img: 'https://www.mongodb.com/assets/images/cloud/atlas/logos/gcp.png'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: cloudProvider
+#                value: gcp
+#          - name: insightedge
+#            helm_set:
+#              - key: enable
+#                value: gcp
+#
+#  - name: gcp_region
+#    display: "GCP Region"
+#    dependency:
+#      name: cloudProvider
+#      values:
+#        - gcp
+#    input_type: select
+#    default: OREGON
+#    select_options:
+#      - name: OREGON
+#        display: 'OREGON(us-west1)'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: gcp_region
+#                value: us-west1
+#      - name: LOS_ANGELES
+#        display: 'LOS ANGELES(us-west2)'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: gcp_region
+#                value: us-west2
+#      - name: IOWA
+#        display: 'IOWA(us-central1)'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: gcp_region
+#                value: us-central1
+#      - name: SOUTH_CAROLINA
+#        display: 'SOUTH CAROLINA(us-east1)'
+#        components:
+#          - name: insightedge
+#            helm_set:
+#              - key: gcp_region
+#                value: us-east1
+#
   - name: workload_type
     display: "Workload type"
     input_type: select
@@ -200,22 +225,22 @@ settings_descriptors:
         components:
           - name: insightedge
             helm_set:
-              - key: ram
-                value: 8gb
+              - key: pu.resources.limits.memory
+                value: 8192Mi
       - name: 16gb
         display: '16GB'
         components:
           - name: insightedge
             helm_set:
               - key: ram
-                value: 16gb
+                value: 16384Mi
       - name: 32gb
         display: '32GB'
         components:
           - name: insightedge
             helm_set:
               - key: ram
-                value: 32gb
+                value: 32768Mi
 
   - name: ha
     display: 'High Availability'
@@ -313,7 +338,7 @@ settings_descriptors:
   - name: use_case
     display: "Select pre-defined use-case"
     input_type: select
-    default: none
+    default: flights_app
     select_options:
       - name: none
         display: 'None'
@@ -325,11 +350,11 @@ settings_descriptors:
             - key: kafka.enabled
               value: false
       - name: flights_app
-        display: 'Flight Delays '
+        display: 'Flight Delays'
         components:
           - name: flightdelays
             helm_set:
             - key: feeder.enabled
-              value: true
+              value: false
             - key: kafka.enabled
               value: true

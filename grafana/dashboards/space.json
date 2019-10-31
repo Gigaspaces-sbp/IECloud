@@ -100,7 +100,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_data_entries_total",
-          "query": "SELECT sum(value) FROM \"space_data_entries_total\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_data_entries_total\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -120,7 +120,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -217,7 +217,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_transactions_active",
-          "query": "SELECT sum(value) FROM \"space_transactions_active\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_transactions_active\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -237,7 +237,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -334,7 +334,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_connections_incoming_active",
-          "query": "SELECT sum(value) FROM \"space_connections_incoming_active\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_connections_incoming_active\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -354,7 +354,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -451,7 +451,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_replication_redo-log_size",
-          "query": "SELECT sum(value) FROM \"space_replication_redo-log_size\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_replication_redo-log_size\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "rawQuery": true,
           "refId": "A",
           "select": [
@@ -472,7 +472,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -582,7 +582,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_operations_write-tp",
-          "query": "SELECT sum(value) FROM \"space_operations_write-tp\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_operations_write-tp\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -602,7 +602,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -699,7 +699,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_operations_read-tp",
-          "query": "SELECT sum(value) FROM \"space_operations_read-tp\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_operations_read-tp\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -719,7 +719,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -816,7 +816,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_operations_take-tp",
-          "query": "SELECT sum(value) FROM \"space_operations_take-tp\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_operations_take-tp\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -836,7 +836,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -933,7 +933,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_operations_change-tp",
-          "query": "SELECT sum(value) FROM \"space_operations_change-tp\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_operations_change-tp\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -953,7 +953,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -1050,7 +1050,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_operations_execute-tp",
-          "query": "SELECT sum(value) FROM \"space_operations_execute-tp\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_operations_execute-tp\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -1070,7 +1070,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -1167,7 +1167,7 @@
           ],
           "groupByTags": [],
           "measurement": "space_operations_before-listener-trigger-tp",
-          "query": "SELECT sum(value) FROM \"space_operations_before-listener-trigger-tp\" WHERE space_name='demo' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
+          "query": "SELECT sum(value) FROM \"space_operations_before-listener-trigger-tp\" WHERE space_name='flights_space' AND space_active='true' AND $timeFilter GROUP BY time($interval)",
           "refId": "A",
           "select": [
             [
@@ -1187,7 +1187,7 @@
             {
               "key": "space_name",
               "operator": "=",
-              "value": "demo"
+              "value": "flights_space"
             },
             {
               "key": "space_active",
@@ -1280,7 +1280,7 @@
     "type": "timepicker"
   },
   "timezone": "browser",
-  "title": "Space-demo",
+  "title": "Space-flights_space",
   "uid": "YfIgpyPmz",
   "version": 1
 }

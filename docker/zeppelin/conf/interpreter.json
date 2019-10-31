@@ -103,7 +103,7 @@
       "properties": {
         "default.url": {
           "name": "default.url",
-          "value": "jdbc:insightedge:spaceName\u003ddemo",
+          "value": "jdbc:insightedge:spaceName\u003dflights_space",
           "type": "string"
         },
         "default.driver": {
