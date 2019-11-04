@@ -1,0 +1,4 @@
+com/gigaspaces/kafkaFeeder/Feeder$FeederTask.class
+com/gigaspaces/kafkaFeeder/model/FlightDelay$FlightDelayBuilder.class
+com/gigaspaces/kafkaFeeder/model/FlightDelay.class
+com/gigaspaces/kafkaFeeder/Feeder.class
